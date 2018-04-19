@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Boodschappenlijst</string>
+    <string name="action_sortAbc">Sorteer alfabetisch</string>
+    <string name="action_sortCategory">Sorteer per categorie</string>
+    <string name="action_sortManual">Sorteer manueel</string>
+    <string name="drawer_account">Mijn account</string>
+    <string name="drawer_help">Help \&amp; feedback</string>
+    <string name="drawer_shops">Mijn winkels</string>
+</resources>
