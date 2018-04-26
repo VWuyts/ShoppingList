@@ -24,6 +24,11 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/Theme.AppCompat.Light" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
