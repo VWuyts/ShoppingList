@@ -28,23 +28,32 @@ public final class shoppingListContract {
         public static final String COLUMN_NAME_NAME = "Name";
     }
 
-    // Inner class to define table ShoppingList
-    public static class ShoppingList implements BaseColumns {
-        public static final String TABLE_NAME = "ShoppingList";
+    // Inner class to define table List
+    public static class List implements BaseColumns {
+        public static final String TABLE_NAME = "List";
         public static final String COLUMN_NAME_NAME = "Name";
         public static final String COLUMN_NAME_IS_RECIPE = "IsRecipe";
+    }
+
+    // Inner class to define table ShoppingOrder
+    public static class ShoppingOrder implements BaseColumns {
+        public static final String TABLE_NAME = "ShoppingOrder";
+        public static final String COLUMN_NAME_SHOP_ID = "ShopID";
+        public static final String COLUMN_NAME_CATEGORY_ID = "CategoryID";
+        public static final String COLUMN_NAME_SEQUENCE = "Sequence";
     }
 
     // Inner class to define table Product
     public static class Product implements BaseColumns {
         public static final String TABLE_NAME = "Product";
-        public static final String COLUMN_NAME_CATEGOTY_ID = "CategoryID";
+        public static final String COLUMN_NAME_CATEGORY_ID = "CategoryID";
         public static final String COLUMN_NAME_SHOP_ID = "ShopID";
         public static final String COLUMN_NAME_UNIT_ID = "UnitID";
         public static final String COLUMN_NAME_NAME = "Name";
         public static final String COLUMN_NAME_IMAGE = "Image";
         public static final String COLUMN_NAME_NOTE = "Note";
         public static final String COLUMN_NAME_FIXED_SHOP = "FixedShop";
+        public static final String COLUMN_NAME_FAVORITE= "IsFavorite";
     }
 
     // Inner class to define table ItemOnList
