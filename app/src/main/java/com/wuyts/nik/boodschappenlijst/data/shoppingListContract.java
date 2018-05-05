@@ -14,6 +14,7 @@ public final class shoppingListContract {
     public static class Shop implements BaseColumns {
         public static final String TABLE_NAME = "Shop";
         public static final String COLUMN_NAME_NAME = "Name";
+        public static final String COLUMN_NAME_IMAGE_ID = "ImageID";
     }
 
     // Inner class to define table Category
@@ -43,9 +44,9 @@ public final class shoppingListContract {
         public static final String COLUMN_NAME_SEQUENCE = "Sequence";
     }
 
-    // Inner class to define table Product
-    public static class Product implements BaseColumns {
-        public static final String TABLE_NAME = "Product";
+    // Inner class to define table Item
+    public static class Item implements BaseColumns {
+        public static final String TABLE_NAME = "Item";
         public static final String COLUMN_NAME_CATEGORY_ID = "CategoryID";
         public static final String COLUMN_NAME_SHOP_ID = "ShopID";
         public static final String COLUMN_NAME_UNIT_ID = "UnitID";
@@ -56,11 +57,11 @@ public final class shoppingListContract {
         public static final String COLUMN_NAME_FAVORITE= "IsFavorite";
     }
 
-    // Inner class to define table ItemOnList
-    public static class ItemOnList implements BaseColumns {
-        public static final String TABLE_NAME = "ItemOnList";
-        public static final String COLUMN_NAME_SHOPPING_LIST_ID = "ShoppingLisID";
-        public static final String COLUMN_NAME_PRODUCT_ID = "ProductID";
+    // Inner class to define table ListItem
+    public static class ListItem implements BaseColumns {
+        public static final String TABLE_NAME = "ListItem";
+        public static final String COLUMN_NAME_LIST_ID = "ListID";
+        public static final String COLUMN_NAME_ITEM_ID = "ItemID";
         public static final String COLUMN_NAME_AMOUNT = "Amount";
         public static final String COLUMN_NAME_PROMOTION = "Promotion";
         public static final String COLUMN_NAME_BOUGHT = "Bought";

@@ -1,11 +1,103 @@
 <resources>
-    <string name="app_name">Boodschappenlijst</string>
+    <string name="app_name">Shopping List</string>
     <!-- action -->
-    <string name="action_sortAbc">Sorteer alfabetisch</string>
-    <string name="action_sortCategory">Sorteer per categorie</string>
-    <string name="action_sortManual">Sorteer manueel</string>
+    <string name="action_sortAbc">Sort alphabetically</string>
+    <string name="action_sortCategory">Sort per category</string>
+    <string name="action_sortManual">Sort manually</string>
     <!-- drawer -->
-    <string name="drawer_account">Mijn account</string>
-    <string name="drawer_help">Help \&amp; feedback</string>
-    <string name="drawer_shops">Mijn winkels</string>
+    <string name="drawer_account">Mt account</string>
+    <string name="drawer_help" translatable="false">Help \&amp; feedback</string>
+    <string name="drawer_shops">My shops</string>
+    <!-- list items viewHolder -->
+    <string name="image_description">Product picture</string>
+    <string name="placeholder_note" translatable="false">units - note</string>
+    <string name="placeholder_name" translatable="false">Item name</string>
+
+    <!-- shop data -->
+    <string name="shop_aldi" translatable="false">Aldi</string>
+    <string name="shop_bio_planet" translatable="false">Bio-Planet</string>
+    <string name="shop_carrefour" translatable="false">Carrefour</string>
+    <string name="shop_colruyt" translatable="false">Colruyt</string>
+    <string name="shop_delhaize" translatable="false">Delhaize</string>
+    <string name="shop_lidl" translatable="false">Lidl</string>
+    <string name="shop_okay" translatable="false">Okay</string>
+    <string name="shop_spar" translatable="false">Spar</string>
+    <!-- category data -->
+    <string name="cat_fruit" translatable="false">Fruit</string>
+    <string name="cat_vegetables">Vegetables</string>
+    <string name="cat_meat">Meat</string>
+    <string name="cat_fish">Fish</string>
+    <string name="cat_cheese">Cheese</string>
+    <string name="cat_dairy">Dairy</string>
+    <string name="cat_pasta">Pasta-Cereals</string>
+    <string name="cat_breakfast">Breakfast</string>
+    <string name="cat_bakery">Bakery</string>
+    <string name="cat_spices">Spices</string>
+    <string name="cat_canned">Canned food</string>
+    <string name="cat_sauces">Sauces</string>
+    <string name="cat_frozen">Frozen food</string>
+    <!-- unit data -->
+    <string name="unit_g">g</string>
+    <string name="unit_kg">kg</string>
+    <string name="unit_piece">Piece</string>
+    <string name="unit_bag">Bag</string>
+    <string name="unit_box">Box</string>
+    <string name="unit_jar">Jar</string>
+    <string name="unit_bunch">Bunch</string>
+    <string name="unit_bundle">Bundle</string>
+    <string name="unit_crate">Crate</string>
+    <string name="unit_tray">Tray</string>
+    <!-- list data -->
+    <string-array name="list_default">My shopping list</string-array>
+    <!-- item data -->
+    <string name="item_fruit_bananas">Bananas</string>
+    <string name="item_fruit_apples">Apples</string>
+    <string name="item_fruit_pears">Pears</string>
+    <string name="item_fruit_grapes">Grapes</string>
+    <string name="item_fruit_plums">Plums</string>
+    <string name="item_fruit_lemon">Lemon</string>
+    <string name="item_fruit_orange">Orange</string>
+    <string name="item_fruit_pineapple">Pineapple</string>
+    <string name="item_fruit_peaches">Peaches</string>
+    <string name="item_fruit_nectarines">Nectarines</string>
+    <string name="item_fruit_apricots">Apricots</string>
+    <string name="item_fruit_cherries">Cherries</string>
+    <string name="item_fruit_mandarins">Mandarins</string>
+    <string name="item_fruit_clementines">Clementines</string>
+    <string name="item_fruit_lime">Lime</string>
+    <string name="item_fruit_grapefruit">Grapefruit</string>
+    <string name="item_fruit_gooseberries">Gooseberries</string>
+    <string name="item_fruit_raspberries">Raspberries</string>
+    <string name="item_fruit_blueberries">Blueberries</string>
+    <string name="item_fruit_kiwi">Kiwi</string>
+    <string name="item_veg_lettuce">Lettuce</string>
+    <string name="item_veg_tomatoes">Tomatoes</string>
+    <string name="item_veg_onions">Onions</string>
+    <string name="item_veg_carrots">Carrots</string>
+    <string name="item_veg_avocado" translatable="false">Avocado</string>
+    <string name="item_veg_mushrooms">Mushrooms</string>
+    <string name="item_veg_spinach">Spinach</string>
+    <string name="item_veg_fennel">Fennel</string>
+    <string name="item_veg_kohlrabi">Kohlrabi</string>
+    <string name="item_veg_potatoes">Potatoes</string>
+    <string name="item_veg_aubergine" translatable="false">Aubergine</string>
+    <string name="item_veg_courgette" translatable="false">Courgette</string>
+    <string name="item_veg_cucumber">Cucumber</string>
+    <string name="item_veg_garlic">Garlic</string>
+    <string name="item_veg_leek">Leek</string>
+    <string name="item_veg_radish">Radish</string>
+    <string name="item_veg_beetroot">Beetroot</string>
+    <string name="item_veg_corn">Corn</string>
+    <string name="item_veg_pumpkin">Pumpkin</string>
+    <string name="item_veg_pepper">Pepper</string>
+    <string name="item_veg_ypepper">Yellow pepper</string>
+    <string name="item_veg_gpepper">Green pepper</string>
+    <string name="item_veg_rpepper">Red pepper</string>
+    <string name="item_veg_asparagus">Asparagus</string>
+    <string name="item_veg_gasparagus">Green asparagus</string>
+    <string name="item_veg_celery">Celery</string>
+    <string name="item_veg_wcelery">White celery</string>
+    <string name="item_veg_gcelery">Green celery</string>
+
+
 </resources>
