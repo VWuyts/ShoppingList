@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Boodschappenlijst</string>
+    <!-- action -->
+    <string name="action_sortAbc">Sorteer alfabetisch</string>
+    <string name="action_sortCategory">Sorteer per categorie</string>
+    <string name="action_sortManual">Sorteer manueel</string>
+    <!-- data -->
+    <string name="data_shop">Aldi,Bio-Planet,Carrefour,Colruyt,Delhaize,Lidl,Okay,Spar</string>
+    <!-- drawer -->
+    <string name="drawer_account">Mijn account</string>
+    <string name="drawer_shops">Mijn winkels</string>
+    <!-- list items viewHolder -->
+    <string name="image_description">Product foto</string>
+
+    <!-- category data -->
+    <string name="cat_vegetables">Groenten</string>
+    <string name="cat_meat">Beenhouwerij</string>
+    <string name="cat_fish">Vis</string>
+    <string name="cat_cheese">Kaas</string>
+    <string name="cat_dairy">Zuivel</string>
+    <string name="cat_pasta">Pasta-Granen</string>
+    <string name="cat_breakfast">Ontbijt</string>
+    <string name="cat_bakery">Bakkerij</string>
+    <string name="cat_spices">Specerijen</string>
+    <string name="cat_canned">Conserven</string>
+    <string name="cat_sauces">Sauzen</string>
+    <string name="cat_frozen">Diepvries</string>
+    <!-- unit data -->
+    <string name="unit_g">g</string>
+    <string name="unit_kg">kg</string>
+    <string name="unit_piece">Stuk</string>
+    <string name="unit_bag">Zakje</string>
+    <string name="unit_box">Bakje</string>
+    <string name="unit_jar">Pot</string>
+    <string name="unit_bunch">Tros</string>
+    <string name="unit_bundle">Bussel</string>
+    <string name="unit_crate">Kist</string>
+    <string name="unit_tray">Karton</string>
+    <!-- list data -->
+    <string-array name="list_default">Mijn boodschappenlijst</string-array>
+    <!-- item data -->
+    <string name="item_fruit_bananas">Bananen</string>
+    <string name="item_fruit_apples">Appels</string>
+    <string name="item_fruit_pears">Peren</string>
+    <string name="item_fruit_grapes">Druiven</string>
+    <string name="item_fruit_plums">Pruimen</string>
+    <string name="item_fruit_lemon">Citroen</string>
+    <string name="item_fruit_orange">Sinaasappel</string>
+    <string name="item_fruit_pineapple">Ananas</string>
+    <string name="item_fruit_peaches">Perziken</string>
+    <string name="item_fruit_nectarines">Nectarines</string>
+    <string name="item_fruit_apricots">Abrikozen</string>
+    <string name="item_fruit_cherries">Kersen</string>
+    <string name="item_fruit_mandarins">Mandarijn</string>
+    <string name="item_fruit_clementines">Clementines</string>
+    <string name="item_fruit_lime">Limoen</string>
+    <string name="item_fruit_grapefruit">Pompelmoes</string>
+    <string name="item_fruit_gooseberries">Kruisbessen</string>
+    <string name="item_fruit_raspberries">Frambozen</string>
+    <string name="item_fruit_blueberries">Blauwbessen</string>
+    <string name="item_fruit_kiwi">Kiwi</string>
+    <string name="item_veg_lettuce">Sla</string>
+    <string name="item_veg_tomatoes">Tomaten</string>
+    <string name="item_veg_onions">Uien</string>
+    <string name="item_veg_carrots">Wortelen</string>
+    <string name="item_veg_mushrooms">Champignons</string>
+    <string name="item_veg_spinach">Spinazie</string>
+    <string name="item_veg_fennel">Venkel</string>
+    <string name="item_veg_kohlrabi">Koolrabi</string>
+    <string name="item_veg_potatoes">Aardappelen</string>
+    <string name="item_veg_cucumber">Komkommer</string>
+    <string name="item_veg_garlic">Knoflook</string>
+    <string name="item_veg_leek">Prei</string>
+    <string name="item_veg_radish">Radijsjes</string>
+    <string name="item_veg_beetroot">Rode biet</string>
+    <string name="item_veg_corn">Maïs</string>
+    <string name="item_veg_pumpkin">Pompoen</string>
+    <string name="item_veg_pepper">Paprika</string>
+    <string name="item_veg_ypepper">Gele paprika</string>
+    <string name="item_veg_gpepper">Groene paprika</string>
+    <string name="item_veg_rpepper">Rode paprika</string>
+    <string name="item_veg_asparagus">Asperges</string>
+    <string name="item_veg_gasparagus">Groene Asperges</string>
+    <string name="item_veg_celery">Selder</string>
+    <string name="item_veg_wcelery">Witte selder</string>
+    <string name="item_veg_gcelery">Groene selder</string>
+
+
+
+</resources>

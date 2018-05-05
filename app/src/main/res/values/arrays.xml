@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- data arrays -->
+    <string-array name="shop_data">
+        <item>@string/shop_aldi</item>
+        <item>@string/shop_bio_planet</item>
+        <item>@string/shop_carrefour</item>
+        <item>@string/shop_colruyt</item>
+        <item>@string/shop_delhaize</item>
+        <item>@string/shop_lidl</item>
+        <item>@string/shop_okay</item>
+        <item>@string/shop_spar</item>
+    </string-array>
+    <string-array name="category_data">
+        <item>@string/cat_fruit</item>
+        <item>@string/cat_vegetables</item>
+        <item>@string/cat_meat</item>
+        <item>@string/cat_fish</item>
+        <item>@string/cat_cheese</item>
+        <item>@string/cat_dairy</item>
+        <item>@string/cat_pasta</item>
+        <item>@string/cat_breakfast</item>
+        <item>@string/cat_bakery</item>
+        <item>@string/cat_spices</item>
+        <item>@string/cat_canned</item>
+        <item>@string/cat_sauces</item>
+        <item>@string/cat_frozen</item>
+    </string-array>
+    <string-array name="unit_data">
+        <item>@string/unit_g</item>
+        <item>@string/unit_kg</item>
+        <item>@string/unit_piece</item>
+        <item>@string/unit_bag</item>
+        <item>@string/unit_box</item>
+        <item>@string/unit_jar</item>
+        <item>@string/unit_bunch</item>
+        <item>@string/unit_bundle</item>
+        <item>@string/unit_crate</item>
+        <item>@string/unit_tray</item>
+    </string-array>
+    <string-array name="fruit_data">
+        <item>@string/item_fruit_bananas</item>
+        <item>@string/item_fruit_apples</item>
+        <item>@string/item_fruit_pears</item>
+        <item>@string/item_fruit_grapes</item>
+        <item>@string/item_fruit_plums</item>
+        <item>@string/item_fruit_lemon</item>
+        <item>@string/item_fruit_orange</item>
+        <item>@string/item_fruit_pineapple</item>
+        <item>@string/item_fruit_peaches</item>
+        <item>@string/item_fruit_nectarines</item>
+        <item>@string/item_fruit_apricots</item>
+        <item>@string/item_fruit_cherries</item>
+        <item>@string/item_fruit_mandarins</item>
+        <item>@string/item_fruit_clementines</item>
+        <item>@string/item_fruit_lime</item>
+        <item>@string/item_fruit_grapefruit</item>
+        <item>@string/item_fruit_gooseberries</item>
+        <item>@string/item_fruit_raspberries</item>
+        <item>@string/item_fruit_blueberries</item>
+        <item>@string/item_fruit_kiwi</item>
+    </string-array>
+    <string-array name="veg_data">
+        <item>@string/item_veg_lettuce</item>
+        <item>@string/item_veg_tomatoes</item>
+        <item>@string/item_veg_onions</item>
+        <item>@string/item_veg_carrots</item>
+        <item>@string/item_veg_avocado</item>
+        <item>@string/item_veg_mushrooms</item>
+        <item>@string/item_veg_spinach</item>
+        <item>@string/item_veg_fennel</item>
+        <item>@string/item_veg_kohlrabi</item>
+        <item>@string/item_veg_potatoes</item>
+        <item>@string/item_veg_aubergine</item>
+        <item>@string/item_veg_courgette</item>
+        <item>@string/item_veg_cucumber</item>
+        <item>@string/item_veg_garlic</item>
+        <item>@string/item_veg_leek</item>
+        <item>@string/item_veg_radish</item>
+        <item>@string/item_veg_beetroot</item>
+        <item>@string/item_veg_corn</item>
+        <item>@string/item_veg_pumpkin</item>
+        <item>@string/item_veg_pepper</item>
+        <item>@string/item_veg_ypepper</item>
+        <item>@string/item_veg_gpepper</item>
+        <item>@string/item_veg_rpepper</item>
+        <item>@string/item_veg_asparagus</item>
+        <item>@string/item_veg_gasparagus</item>
+        <item>@string/item_veg_celery</item>
+        <item>@string/item_veg_wcelery</item>
+        <item>@string/item_veg_gcelery</item>
+    </string-array>
+
+    <integer-array name="shop_image_dara">
+        <item>@drawable/logo_aldi</item>
+        <item>@drawable/logo_bio_planet</item>
+        <item>@drawable/logo_carrefour</item>
+        <item>@drawable/logo_colruyt</item>
+        <item>@drawable/logo_delhaize</item>
+        <item>@drawable/logo_lidl</item>
+        <item>@drawable/logo_okay</item>
+        <item>@drawable/logo_spar</item>
+    </integer-array>
+
+</resources>
