@@ -101,70 +101,6 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ITEM_ON_LIST = "DROP TABLE IF EXISTS " +
             shoppingListContract.ListItem.TABLE_NAME;
 
-
-    // Arrays for inserting data into tables
-    /*private static final String[] SHOP_DATA = {"Aldi", "Bio-Planet", "Carrefour", "Colruyt",
-            "Delhaize", "Lidl", "Okay", "Spar"};
-    private static final int[] SHOP_IMAGE_DATA = {R.drawable.logo_aldi, R.drawable.logo_bio_planet,
-            R.drawable.logo_carrefour, R.drawable.logo_colruyt, R.drawable.logo_delhaize,
-            R.drawable.logo_lidl, R.drawable.logo_okay, R.drawable.logo_spar};
-    private static final String[] CATEGORY_DATA = {"Fruit", "Groenten", "Beenhouwerij", "Vis",
-            "Kaas", "Zuivel", "Pasta-Granen", "Ontbijt", "Bakkerij", "Specerijen",
-            "Conserven", "Sauzen", "Diepvries"};
-    private static final String[] UNIT_DATA = {"g", "kg", "Stuk", "Zakje", "Bakje", "Pot", "Tros",
-            "Bussel", "Kist", "Karton"};*/
-    private static final String[][] ITEM_DATA = {
-            {"Banenen", "Appels", "Peren", "Druiven", "Pruimen", "Citroen", "Sinaasappel", "Ananas",
-                "Perziken", "Nectarines", "Abrikozen", "Kersen", "Mandarijn", "Clementines",
-                "Limoen", "Pompelmoes", "Kruisbessen", "Frambozen", "Blauwbessen", "Kiwi"},
-            {"Sla", "Tomaten", "Uien", "Wortelen", "Avocado", "Champignons", "Spinazie", "Venkel",
-                "Koolrabi", "Aardperen", "Aardapelen", "Aubergine", "Courgette", "Komkommer",
-                "Knoflook", "Prei", "Radijsjes", "Rode biet", "Maïs", "Pompoen", "Gele paprika",
-                "Groene paprika", "Rode paprika", "Paprika", "Asperges", "Groene Asperges",
-                "Selder", "Witte selder", "Groene selder"},
-            {"Biefstuk", "Varkenslapje", "Kalfslapje", "Kippenfilet", "Lamsrinstuk", "Konijn",
-                "Paardensteak", "Kalkoenfilet", "Gehakt", "Eendenborst", "Cordon blue", "Worst",
-                "Chipolata", "Kippenworst", "Schnitzel", "Kippenschnitzel", "Saté"},
-            {"Kabeljauw", "Zeebaars", "Makreel", "Gerookte makreel", "Zalm", "Gerookte zalm",
-                "Forel", "Tong", "Maatjes", "Tonijn", "Rog", "Garnalen", "Kreeft", "Mosselen",
-                "Oesters", "Zeewolf", "Haring", "Brasem", "Schol"},
-            {"Jonge kaas sneden", "Jonge kaas blok", "Belegen kaas sneden", "Belegen kaas blok",
-                "Oude kaas sneden", "Oude kaas blok", "Geitenkaas", "Kruidenkaas", "Smeerkaas",
-                "Feta", "Mozzarella", "Ricotta", "Mascarpone", "Geraspte kaas", "Verse kaas",
-                "Parmezaan", "Roquefort", "Brie", "Gouda", "Beemster", "Gruyère", "Emmental",
-                "Comté", "Gorgonzola"},
-            {"Eieren", "Hoeveboter", "Smeerboter", "Bakboter", "Melk", "Halfvolle melk",
-                "Magere melk", "Volle melk", "Sojamelk", "Havermelk", "Amandelmelk", "Chocomelk",
-                "Rijstmelk", "Karnemelk", "Room", "Culinaire room", "Slagroom", "Sojaroom",
-                "Zure room", "Yoghurt", "Magere yoghurt", "Volle yoghurt", "Fruityoghurt",
-                "Griekse yoghurt", "Drinkyoghurt", "Rijstpap", "Pudding", "Chocomousse", "Tiramisu"},
-            {"Pasta", "Rijst", "Couscous", "Gnocchi", "Tarwe", "Quinoa", "Bulgur", "Noedels",
-                "Spaghetti", "Cappellini", "Lasagne", "Tagliatelle", "Penne", "Basmatirijst",
-                "Volle rijst", "Rode rijst", "Arborio rijst", "Boekweit"},
-            {"Choco", "Confituur", "Hagelslag", "Honing", "Muesli", "Cruesli", "Corn flakes",
-                "Rijstwafels", "Maïswafels", "Beschuiten", "Pindakaas", "Speculaaspasta",
-                "Aardbeienconfituur", "Abrikozenconfituur"},
-            {"Stokbrood", "Houthakkersbrood", "Witbrood", "Volkorenbrood", "Boerenbrood",
-                "Speltbrood", "Roggebrood", "Meergranenbrood", "Sandwich", "Pistolets", "Picolo",
-                "Ciabatta", "Foccacia", "Rozijnenbrood", "Suikerbrood", "Fruittaart", "Appeltaart",
-                "Aardbeientaart", "Donuts", "Oliebol", "Eclair"},
-            {"Zout", "Witte peper", "Zwarte peper", "Roze peper", "Oregano", "Basilicum", "Dille",
-                "Cayennepeper", "Chilipeper", "Kippenkruiden", "Stoofvleeskruiden", "Thijm",
-                "Rozemarijn", "Cajun", "Kerrie", "Kurkuma", "Kaneel", "Jeneverbessen", "Muskaatnoot",
-                "Bieslook", "Saffraan", "Vanillestokjes", "Komijn", "Koriander", "Paprikapoeder"},
-            {"Rode bonen", "Borlottibonen", "Tomatenblokjes", "Tomatenpuree", "Augurken",
-                "Kappertjes", "Ajuintjes", "Palmharten", "Fruitsalade", "Perziken", "Appelmoes",
-                "Veenbessen", "Tonijn", "Makreel", "Ansjovis", "Sardienen", "Zalm", "Ravioli",
-                "Witte bonen in tomatensaus", "Cassoulet"},
-            {"Mayonaise", "Ketchup", "Mosterd", "Tartaar", "Cocktail", "Andalouse", "Vinaigrette",
-                "Pesto", "Sojasaus", "Tabasco", "Worcestersauce", "Bearnaise", "Pickles",
-                "Bolognese", "Champignonsaus", "Currysaus", "Provencaalse saus"},
-            {"Fishsticks", "Erwten", "Spinazie","Roomijs", "Vanille-ijs", "Chocolade-ijs",
-                "Mokka-ijs", "Sorbet", "Citroensorbet", "Garnalen", "Frieten", "Loempia's",
-                "Waterijsjes", "Frisco's", "Pizza", "Kipnuggets", "Bosvruchten", "Frambozen",
-                "Kroketten", "Zeevruchten"}
-    };
-
     // Array for storing category IDs
     private static long[] categoryIDs;
 
@@ -256,8 +192,23 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
     // Helper function to populate table Item
     private void insertItem(SQLiteDatabase db, int catLength) {
+        String[][] itemData = {
+                mContext.getResources().getStringArray(R.array.fruit_data),
+                mContext.getResources().getStringArray(R.array.veg_data),
+                mContext.getResources().getStringArray(R.array.meat_data),
+                mContext.getResources().getStringArray(R.array.fish_data),
+                mContext.getResources().getStringArray(R.array.cheese_data),
+                mContext.getResources().getStringArray(R.array.dairy_data),
+                mContext.getResources().getStringArray(R.array.pasta_data),
+                mContext.getResources().getStringArray(R.array.breakfast_data),
+                mContext.getResources().getStringArray(R.array.bakery_data),
+                mContext.getResources().getStringArray(R.array.spices_data),
+                mContext.getResources().getStringArray(R.array.canned_data),
+                mContext.getResources().getStringArray(R.array.sauces_data),
+                mContext.getResources().getStringArray(R.array.frozen_data)
+        };
         for (int i = 0; i < catLength; i++) {
-            for (String item : ITEM_DATA[i]) {
+            for (String item : itemData[i]) {
                 ContentValues values = new ContentValues();
                 values.put(shoppingListContract.Item.COLUMN_NAME_CATEGORY_ID, categoryIDs[i]);
                 values.put(shoppingListContract.Item.COLUMN_NAME_NAME, item);

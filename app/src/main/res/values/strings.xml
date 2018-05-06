@@ -29,7 +29,7 @@
     <string name="cat_fish">Fish</string>
     <string name="cat_cheese">Cheese</string>
     <string name="cat_dairy">Dairy</string>
-    <string name="cat_pasta">Pasta-Cereals</string>
+    <string name="cat_pasta">Pasta-Grains</string>
     <string name="cat_breakfast">Breakfast</string>
     <string name="cat_bakery">Bakery</string>
     <string name="cat_spices">Spices</string>
@@ -98,6 +98,222 @@
     <string name="item_veg_celery">Celery</string>
     <string name="item_veg_wcelery">White celery</string>
     <string name="item_veg_gcelery">Green celery</string>
+    <string name="item_meat_steak">Steak</string>
+    <string name="item_meat_psteak">Pork steak</string>
+    <string name="item_meat_pchop">Pork chop</string>
+    <string name="item_meat_vsteak">Veal steak</string>
+    <string name="item_meat_cbreast">Chicken breast</string>
+    <string name="item_meat_cleg">Chicken leg</string>
+    <string name="item_meat_lrack">Lamb rack</string>
+    <string name="item_meat_lcutlet">Lamb cutlet</string>
+    <string name="item_meat_rabbit">Rabbit</string>
+    <string name="item_meat_hsteak">Horse steak</string>
+    <string name="item_meat_tbreast">Turkey breast</string>
+    <string name="item_meat_minced">Minced meat</string>
+    <string name="item_meat_dbreast">Duck breast</string>
+    <string name="item_meat_escalope">Escalope ham cheese</string>
+    <string name="item_meat_sausage">Sausage</string>
+    <string name="item_meat_chipolata" translatable="false">Chipolata</string>
+    <string name="item_meat_csausage">Chicken sausage</string>
+    <string name="item_meat_cutlet">Cutlet</string>
+    <string name="item_meat_vcutlet">Veal cutlet</string>
+    <string name="item_meat_ccutlet">Chicken cutlet</string>
+    <string name="item_meat_satay">Satay</string>
+    <string name="item_fish_cod">Cod</string>
+    <string name="item_fish_bass">Bass</string>
+    <string name="item_fish_mackerel">Mackerel</string>
+    <string name="item_fish_smackerel">Smoked mackerel</string>
+    <string name="item_fish_salmon">Salmon</string>
+    <string name="item_fish_ssalmon">Smoked salmon</string>
+    <string name="item_fish_trout">Trout</string>
+    <string name="item_fish_sole">Sole</string>
+    <string name="item_fish_yherring">Young herring</string>
+    <string name="item_fish_tuna">Tuna</string>
+    <string name="item_fish_ray">Ray</string>
+    <string name="item_fish_shrimps">Shrimps</string>
+    <string name="item_fish_lobster">Lobster</string>
+    <string name="item_fish_mussels">Mussels</string>
+    <string name="item_fish_oysters">Oysters</string>
+    <string name="item_fish_wolf">Wolf fish</string>
+    <string name="item_fish_herring">Herring</string>
+    <string name="item_fish_bream">Bream</string>
+    <string name="item_fish_plaice">Plaice</string>
+    <string name="item_cheese_slices">Cheese slices</string>
+    <string name="item_cheese">Cheese</string>
+    <string name="item_cheese_mslices">Mature cheese slices</string>
+    <string name="item_cheese_mature">Mature cheese</string>
+    <string name="item_cheese_emsclices">Extra mature cheese sclices</string>
+    <string name="item_cheese_emature">Extra mature cheese</string>
+    <string name="item_cheese_goat">Goat cheese</string>
+    <string name="item_cheese_herb">Herb cheese</string>
+    <string name="item_cheese_spread">Cheese spread</string>
+    <string name="item_cheese_grated">Grated cheese</string>
+    <string name="item_cheese_cottage">Cottage cheese</string>
+    <string name="item_cheese_parmesan">Parmesan</string>
+    <string name="item_cheese_feta" translatable="false">Feta</string>
+    <string name="item_cheese_mozzarella" translatable="false">Mozzarella</string>
+    <string name="item_cheese_ricotta" translatable="false">Ricotta</string>
+    <string name="item_cheese_mascarpone" translatable="false">Mascarpone</string>
+    <string name="item_cheese_roquefort" translatable="false">Roquefort</string>
+    <string name="item_cheese_brie" translatable="false">Brie</string>
+    <string name="item_cheese_gouda" translatable="false">Gouda</string>
+    <string name="item_cheese_beemster" translatable="false">Beemster</string>
+    <string name="item_cheese_gruyere" translatable="false">Gruyère</string>
+    <string name="item_cheese_emmental" translatable="false">Emmental</string>
+    <string name="item_cheese_comte" translatable="false">Comté</string>
+    <string name="item_cheese_gorgonzola" translatable="false">Gorgonzola</string>
+    <string name="item_dairy_eggs">Eggs</string>
+    <string name="item_dairy_block">Block butter</string>
+    <string name="item_dairy_spread">Spread</string>
+    <string name="item_dairy_butter">Butter</string>
+    <string name="item_dairy_milk">Milk</string>
+    <string name="item_dairy_sskmilk">Semi skimmed milk</string>
+    <string name="item_dairy_skmilk">Skimmed milk</string>
+    <string name="item_dairy_wmilk">Whole milk</string>
+    <string name="item_dairy_smilk">Soy milk</string>
+    <string name="item_dairy_omilk">Oat milk</string>
+    <string name="item_dairy_amilk">Almond milk</string>
+    <string name="item_dairy_cmilk">Chocolate milk</string>
+    <string name="item_dairy_rmilk">Rice milk</string>
+    <string name="item_dairy_buttermilk">Buttermilk</string>
+    <string name="item_dairy_cream">Cream</string>
+    <string name="item_dairy_scream">Single cream</string>
+    <string name="item_dairy_dcream">Double cream</string>
+    <string name="item_dairy_soycream">Soy cream</string>
+    <string name="item_dairy_sourcream">Soured cream</string>
+    <string name="item_dairy_yoghurt" translatable="false">Yoghurt</string>
+    <string name="item_dairy_lfyoghurt">Low fat yoghurt</string>
+    <string name="item_dairy_fyoghurt">Fruit yoghurt</string>
+    <string name="item_dairy_gyoghurt">Greek yoghurt</string>
+    <string name="item_dairy_ydrink">Yoghurt drink</string>
+    <string name="item_dairy_rpudding">Rice pudding</string>
+    <string name="item_dairy_milkpudding">Milkpudding</string>
+    <string name="item_dairy_chmousse">Chocolate mousse</string>
+    <string name="item_dairy_tiramisu" translatable="false">Tiramisu</string>
+    <string name="item_pasta" translatable="false">Pasta</string>
+    <string name="item_pasta_gnocchi" translatable="false">Gnocchi</string>
+    <string name="item_pasta_quinoa" translatable="false">Quinoa</string>
+    <string name="item_pasta_spaghetti" translatable="false">Spaghetti</string>
+    <string name="item_pasta_cappellini" translatable="false">Cappellini</string>
+    <string name="item_pasta_tagliatelle" translatable="false">Tagliatelle</string>
+    <string name="item_pasta_penne" translatable="false">Penne</string>
+    <string name="item_pasta_rice">Rice</string>
+    <string name="item_pasta_wheat">Wheat</string>
+    <string name="item_pasta_bulgar">Bulgar</string>
+    <string name="item_pasta_cous">Cous cous</string>
+    <string name="item_pasta_noodles">Noodles</string>
+    <string name="item_pasta_lasagna">Lasagna</string>
+    <string name="item_pasta_basmati">Basmati rice</string>
+    <string name="item_pasta_wholegrain">Wholegrain rice</string>
+    <string name="item_pasta_red">Red rice</string>
+    <string name="item_pasta_arborio">Arborio rice</string>
+    <string name="item_pasta_buckwheat">Buckwheat</string>
+    <string name="item_breakfast_jam">Jam</string>
+    <string name="item_breakfast_chspread">Chocolate spread</string>
+    <string name="item_breakfast_chsprinkles">Chocolate sprinkles</string>
+    <string name="item_breakfast_honey">Honey</string>
+    <string name="item_breakfast_granola">Granola</string>
+    <string name="item_breakfast_rice">Rice cakes</string>
+    <string name="item_breakfast_corn">Corn cakes</string>
+    <string name="item_breakfast_crisp">Crisp bread</string>
+    <string name="item_breakfast_peanut">Peanut butter</string>
+    <string name="item_breakfast_gingerbread">Gingerbread paste</string>
+    <string name="item_breakfast_strawberry">Strawberry jam</string>
+    <string name="item_breakfast_apricot">Apricot jam</string>
+    <string name="item_breakfast_muesli" translatable="false">Muesli</string>
+    <string name="item_breakfast_cornflakes" translatable="false">Corn flakes</string>
+    <string name="item_bakery_baguette">Baguette</string>
+    <string name="item_bakery_white">White bread</string>
+    <string name="item_bakery_wholemeal">Wholemeal bread</string>
+    <string name="item_bakery_spelt">Spelt bread</string>
+    <string name="item_bakery_rye">Rye bread</string>
+    <string name="item_bakery_multigrain">Multigrain bread</string>
+    <string name="item_bakery_soft">Soft bread roll</string>
+    <string name="item_bakery_roll">Roll</string>
+    <string name="item_bakery_french">French roll</string>
+    <string name="item_bakery_raisin">Raisin Bread</string>
+    <string name="item_bakery_sugar">Sugar bread</string>
+    <string name="item_bakery_fruit">Fruit pie</string>
+    <string name="item_bakery_apple">Apple pie</string>
+    <string name="item_bakery_strawberry">Strawberry pie</string>
+    <string name="item_bakery_doughnut">Doughnut</string>
+    <string name="item_bakery_eclair" translatable="false">Eclair</string>
+    <string name="item_bakery_ciabatta" translatable="false">Ciabatta</string>
+    <string name="item_bakery_focaccia" translatable="false">Focaccia</string>
+    <string name="item_spices_salt">Salt</string>
+    <string name="item_spices_wpepper">White pepper</string>
+    <string name="item_spices_bpepper">Black pepper</string>
+    <string name="item_spices_ppepper">Pink pepper</string>
+    <string name="item_spices_basil">Basil</string>
+    <string name="item_spices_dill">Dill</string>
+    <string name="item_spices_taragon">Taragon</string>
+    <string name="item_spices_cpepper">Cayenne pepper</string>
+    <string name="item_spices_chilli">Chilli</string>
+    <string name="item_spices_cloves">Cloves</string>
+    <string name="item_spices_stew">Stew herbs</string>
+    <string name="item_spices_thyme">Thyme</string>
+    <string name="item_spices_rosemary">Rosemary</string>
+    <string name="item_spices_curry">Curry</string>
+    <string name="item_spices_turmeric">Turmeric</string>
+    <string name="item_spices_cinnamon">Cinnamon</string>
+    <string name="item_spices_juniper">Juniper</string>
+    <string name="item_spices_nutmeg">Nutmeg</string>
+    <string name="item_spices_chives">Chives</string>
+    <string name="item_spices_saffron">Saffron</string>
+    <string name="item_spices_vanilla">Vanilla pod</string>
+    <string name="item_spices_cumin">Cumin</string>
+    <string name="item_spices_coriander">Coriander</string>
+    <string name="item_spices_paprika">Paprika</string>
+    <string name="item_spices_oregano" translatable="false">Oregano</string>
+    <string name="item_spices_cajun" translatable="false">Cajun</string>
+    <string name="item_canned_kidney">Kidney beans</string>
+    <string name="item_canned_borlotti">Borlotti beans</string>
+    <string name="item_canned_tcubes">Tomato cubes</string>
+    <string name="item_canned_tpaste">Tomato paste</string>
+    <string name="item_canned_gherkins">Pickled gherkins</string>
+    <string name="item_canned_capers">Capers</string>
+    <string name="item_canned_onions">Pickled onions</string>
+    <string name="item_canned_palm">Hearts of palm</string>
+    <string name="item_canned_fruit">Fruit cocktail</string>
+    <string name="item_canned_peaches">Peaches</string>
+    <string name="item_canned_applesauce">Applesauce</string>
+    <string name="item_canned_cranberries">Cranberries</string>
+    <string name="item_canned_tuna">Tuna</string>
+    <string name="item_canned_mackerel">Mackerel</string>
+    <string name="item_canned_anchovies">Anchovies</string>
+    <string name="item_canned_salmon">Salmon</string>
+    <string name="item_canned_baked_beans">Baked beans in tomato sauce</string>
+    <string name="item_canned_cassoulet" translatable="false">Cassoulet</string>
+    <string name="item_canned_sardine" translatable="false">Sardine</string>
+    <string name="item_canned_ravioli" translatable="false">Ravioli</string>
+    <string name="item_sauce_mayonnaise">Mayonnaise</string>
+    <string name="item_sauce_mustard">Mustard</string>
+    <string name="item_sauce_worcester">Worcester sauce</string>
+    <string name="item_sauce_soy">Soy sauce</string>
+    <string name="item_sauce_tikka" translatable="false">Tikka Masala</string>
+    <string name="item_sauce_pesto" translatable="false">Pesto</string>
+    <string name="item_sauce_bolognese" translatable="false">Bolognese</string>
+    <string name="item_sauce_tabasco" translatable="false">Tabasco</string>
+    <string name="item_sauce_ketchup" translatable="false">Ketchup</string>
+    <string name="item_frozen_battered">Battered fish</string>
+    <string name="item_frozen_peas">Peas</string>
+    <string name="item_frozen_spinach">Spinach</string>
+    <string name="item_frozen_ice_cream">Ice cream</string>
+    <string name="item_frozen_vanilla">Vanilla ice cream</string>
+    <string name="item_frozen_chocolate">Chocolate ice cream</string>
+    <string name="item_frozen_lemon">Lemon sorbet</string>
+    <string name="item_frozen_shrimps">Shrimps</string>
+    <string name="item_frozen_chips">Chips</string>
+    <string name="item_frozen_spring">Spring roll</string>
+    <string name="item_frozen_rocket">Rocket lolly</string>
+    <string name="item_frozen_ice_lollies">Ice lollies</string>
+    <string name="item_frozen_chicken">Chicken nuggets</string>
+    <string name="item_frozen_forest">Forest fruit</string>
+    <string name="item_frozen_raspberries">Raspberries</string>
+    <string name="item_frozen_croquettes">Croquettes</string>
+    <string name="item_frozen_seafood">Seafood</string>
+    <string name="item_frozen_pizza" translatable="false">Pizza</string>
+    <string name="item_frozen_sorbet" translatable="false">Sorbet</string>
 
 
 </resources>
