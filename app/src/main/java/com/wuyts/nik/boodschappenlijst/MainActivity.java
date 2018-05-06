@@ -1,26 +1,49 @@
 package com.wuyts.nik.boodschappenlijst;
 
+import android.database.Cursor;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-
+    private Cursor mItemCursor;
     private RecyclerView mItemList;
+    private RecyclerView.Adapter mItemAdapter;
+    private RecyclerView.LayoutManager mlayoutManager;
     private DrawerLayout mDrawerLayout;
+    //TODO: Create Shop, Unit, Category and Item class
+    //TODO: Create ArrayLists for Shop, Unit and Category and populate them
+    /*private ArrayList<String> shopArray;
+    private ArrayList<Long> shopIdArray;
+    private ArrayList<Integer> shopImageArray;*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Database: get shop, category and unit data
+        // mItemCursor =
+
+        // RecyclerView
+        mItemList = findViewById(R.id.rv_list_items);
+        mlayoutManager = new LinearLayoutManager(this);
+        mItemList.setLayoutManager(mlayoutManager);
+        mItemList.setHasFixedSize(true);
+        mItemAdapter = new ItemAdapter(mItemCursor);
+        mItemList.setAdapter(mItemAdapter);
 
         // Toolbar
         Toolbar mainToolbar  = findViewById(R.id.main_toolbar);

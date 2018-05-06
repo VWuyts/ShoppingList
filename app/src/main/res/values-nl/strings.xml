@@ -37,7 +37,7 @@
     <string name="unit_crate">Kist</string>
     <string name="unit_tray">Karton</string>
     <!-- list data -->
-    <string-array name="list_default">Mijn boodschappenlijst</string-array>
+    <string name="list_default">Mijn boodschappenlijst</string>
     <!-- item data -->
     <string name="item_fruit_bananas">Bananen</string>
     <string name="item_fruit_apples">Appels</string>

@@ -3,6 +3,7 @@
 
     <!-- data arrays -->
     <string-array name="shop_data">
+        <item>@string/shop_ah</item>
         <item>@string/shop_aldi</item>
         <item>@string/shop_bio_planet</item>
         <item>@string/shop_carrefour</item>

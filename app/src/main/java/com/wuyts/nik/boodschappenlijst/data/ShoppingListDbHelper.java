@@ -13,75 +13,76 @@ import com.wuyts.nik.boodschappenlijst.R;
 
 public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
-    private final Context mContext;
-
     // Database name and version
     public static final String DATABASE_NAME = "ShoppingList.db";
     public static final int DATABASE_VERSION = 1;
+
+    // Context required to access resources
+    private final Context mContext;
 
     // SQL statements to create tables
     private static final String SQL_CREATE_SHOP =
         "CREATE TABLE " + shoppingListContract.Shop.TABLE_NAME + " (" +
             shoppingListContract.Shop._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            shoppingListContract.Shop.COLUMN_NAME_NAME + " TEXT NOT NULL, " +
-            shoppingListContract.Shop.COLUMN_NAME_IMAGE_ID + " INTEGER)";
+            shoppingListContract.Shop.COLUMN_NAME + " TEXT NOT NULL, " +
+            shoppingListContract.Shop.COLUMN_IMAGE_ID + " INTEGER)";
     private static final String SQL_CREATE_CATEGORY =
         "CREATE TABLE " + shoppingListContract.Category.TABLE_NAME + " (" +
             shoppingListContract.Category._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            shoppingListContract.Category.COLUMN_NAME_NAME + " TEXT NOT NULL)";
+            shoppingListContract.Category.COLUMN_NAME + " TEXT NOT NULL)";
     private static final String SQL_CREATE_UNIT =
         "CREATE TABLE " + shoppingListContract.Unit.TABLE_NAME + " (" +
             shoppingListContract.Unit._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            shoppingListContract.Unit.COLUMN_NAME_NAME + " TEXT NOT NULL)";
+            shoppingListContract.Unit.COLUMN_NAME + " TEXT NOT NULL)";
     private static final String SQL_CREATE_LIST =
         "CREATE TABLE " + shoppingListContract.List.TABLE_NAME + " (" +
             shoppingListContract.List._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            shoppingListContract.List.COLUMN_NAME_NAME + " TEXT NOT NULL, " +
-            shoppingListContract.List.COLUMN_NAME_IS_RECIPE + " INTEGER NOT NULL DEFAULT 0)";
+            shoppingListContract.List.COLUMN_NAME + " TEXT NOT NULL, " +
+            shoppingListContract.List.COLUMN_IS_RECIPE + " INTEGER NOT NULL DEFAULT 0)";
     private static final String SQL_CREATE_SHOPPING_ORDER = "CREATE TABLE " +
             shoppingListContract.ShoppingOrder.TABLE_NAME + " (" +
             shoppingListContract.ShoppingOrder._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            shoppingListContract.ShoppingOrder.COLUMN_NAME_CATEGORY_ID + " INTEGER NOT NULL, " +
-            shoppingListContract.ShoppingOrder.COLUMN_NAME_SHOP_ID + " INTEGER NOT NULL, " +
-            shoppingListContract.ShoppingOrder.COLUMN_NAME_SEQUENCE + " INTEGER NOT NULL, " +
-            "FOREIGN KEY(" + shoppingListContract.ShoppingOrder.COLUMN_NAME_CATEGORY_ID +
+            shoppingListContract.ShoppingOrder.COLUMN_CATEGORY_ID + " INTEGER NOT NULL, " +
+            shoppingListContract.ShoppingOrder.COLUMN_SHOP_ID + " INTEGER NOT NULL, " +
+            shoppingListContract.ShoppingOrder.COLUMN_SEQUENCE + " INTEGER NOT NULL, " +
+            "FOREIGN KEY(" + shoppingListContract.ShoppingOrder.COLUMN_CATEGORY_ID +
                 ") REFERENCES " + shoppingListContract.Category.TABLE_NAME + "(" +
                 shoppingListContract.Category._ID + "), " +
-            "FOREIGN KEY(" + shoppingListContract.ShoppingOrder.COLUMN_NAME_SHOP_ID +
+            "FOREIGN KEY(" + shoppingListContract.ShoppingOrder.COLUMN_SHOP_ID +
                 ") REFERENCES " + shoppingListContract.Shop.TABLE_NAME + "(" +
                 shoppingListContract.Shop._ID + "))";
     private static final String SQL_CREATE_ITEM =
         "CREATE TABLE " + shoppingListContract.Item.TABLE_NAME + " (" +
              shoppingListContract.Item._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-             shoppingListContract.Item.COLUMN_NAME_CATEGORY_ID + " INTEGER NOT NULL, " +
-             shoppingListContract.Item.COLUMN_NAME_SHOP_ID + " INTEGER, " +
-             shoppingListContract.Item.COLUMN_NAME_UNIT_ID + " INTEGER, " +
-             shoppingListContract.Item.COLUMN_NAME_NAME + " TEXT NOT NULL," +
-             shoppingListContract.Item.COLUMN_NAME_IMAGE + " BLOB, " +
-             shoppingListContract.Item.COLUMN_NAME_NOTE + " TEXT, " +
-             shoppingListContract.Item.COLUMN_NAME_FIXED_SHOP + " INTEGER NOT NULL DEFAULT 0, " +
-             shoppingListContract.Item.COLUMN_NAME_FAVORITE + " INTEGER NOT NULL DEFAULT 0, " +
-             "FOREIGN KEY(" + shoppingListContract.Item.COLUMN_NAME_CATEGORY_ID +
+             shoppingListContract.Item.COLUMN_CATEGORY_ID + " INTEGER NOT NULL, " +
+             shoppingListContract.Item.COLUMN_SHOP_ID + " INTEGER, " +
+             shoppingListContract.Item.COLUMN_UNIT_ID + " INTEGER, " +
+             shoppingListContract.Item.COLUMN_NAME + " TEXT NOT NULL," +
+             shoppingListContract.Item.COLUMN_IMAGE + " BLOB, " +
+             shoppingListContract.Item.COLUMN_NOTE + " TEXT, " +
+             shoppingListContract.Item.COLUMN_FIXED_SHOP + " INTEGER NOT NULL DEFAULT 0, " +
+             shoppingListContract.Item.COLUMN_FAVORITE + " INTEGER NOT NULL DEFAULT 0, " +
+             "FOREIGN KEY(" + shoppingListContract.Item.COLUMN_CATEGORY_ID +
                 ") REFERENCES " + shoppingListContract.Category.TABLE_NAME + "(" +
                 shoppingListContract.Category._ID + "), " +
-             "FOREIGN KEY(" + shoppingListContract.Item.COLUMN_NAME_SHOP_ID +
+             "FOREIGN KEY(" + shoppingListContract.Item.COLUMN_SHOP_ID +
                 ") REFERENCES " + shoppingListContract.Shop.TABLE_NAME + "(" +
                 shoppingListContract.Shop._ID + "), " +
-             "FOREIGN KEY(" + shoppingListContract.Item.COLUMN_NAME_UNIT_ID +
+             "FOREIGN KEY(" + shoppingListContract.Item.COLUMN_UNIT_ID +
                 ") REFERENCES " + shoppingListContract.Unit.TABLE_NAME + "(" +
                 shoppingListContract.Unit._ID + "))";
     private static final String SQL_CREATE_ITEM_ON_LIST =
         "CREATE TABLE " + shoppingListContract.ListItem.TABLE_NAME + " (" +
              shoppingListContract.ListItem._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-             shoppingListContract.ListItem.COLUMN_NAME_LIST_ID + " INTEGER NOT NULL, " +
-             shoppingListContract.ListItem.COLUMN_NAME_ITEM_ID + " INTEGER NOT NULL, " +
-             shoppingListContract.ListItem.COLUMN_NAME_AMOUNT + " INTEGER, " +
-             shoppingListContract.ListItem.COLUMN_NAME_PROMOTION + " INTEGER NOT NULL DEFAULT 0, " +
-             shoppingListContract.ListItem.COLUMN_NAME_BOUGHT + " INTEGER NOT NULL DEFAULT 0, " +
-             "FOREIGN KEY(" + shoppingListContract.ListItem.COLUMN_NAME_LIST_ID +
+             shoppingListContract.ListItem.COLUMN_LIST_ID + " INTEGER NOT NULL, " +
+             shoppingListContract.ListItem.COLUMN_ITEM_ID + " INTEGER NOT NULL, " +
+             shoppingListContract.ListItem.COLUMN_AMOUNT + " INTEGER, " +
+             shoppingListContract.ListItem.COLUMN_PROMOTION + " INTEGER NOT NULL DEFAULT 0, " +
+             shoppingListContract.ListItem.COLUMN_BOUGHT + " INTEGER NOT NULL DEFAULT 0, " +
+             "FOREIGN KEY(" + shoppingListContract.ListItem.COLUMN_LIST_ID +
                 ") REFERENCES " + shoppingListContract.List.TABLE_NAME + "(" +
                 shoppingListContract.List._ID + "), " +
-             "FOREIGN KEY(" + shoppingListContract.ListItem.COLUMN_NAME_LIST_ID +
+             "FOREIGN KEY(" + shoppingListContract.ListItem.COLUMN_LIST_ID +
                 ") REFERENCES " + shoppingListContract.Item.TABLE_NAME + "(" +
                 shoppingListContract.Item._ID + ")) ";
 
@@ -101,8 +102,9 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ITEM_ON_LIST = "DROP TABLE IF EXISTS " +
             shoppingListContract.ListItem.TABLE_NAME;
 
-    // Array for storing category IDs
+    // Array for storing IDs
     private static long[] categoryIDs;
+
 
     // Constructor
     public ShoppingListDbHelper(Context context) {
@@ -151,8 +153,8 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
         for (int i = 0; i < shopData.length; i++) {
             ContentValues values = new ContentValues();
-            values.put(shoppingListContract.Shop.COLUMN_NAME_NAME, shopData[i]);
-            values.put(shoppingListContract.Shop.COLUMN_NAME_IMAGE_ID, shopImageData[i]);
+            values.put(shoppingListContract.Shop.COLUMN_NAME, shopData[i]);
+            values.put(shoppingListContract.Shop.COLUMN_IMAGE_ID, shopImageData[i]);
             db.insert(shoppingListContract.Shop.TABLE_NAME, null, values);
         }
     }
@@ -164,7 +166,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
         for (int i = 0; i < categoryData.length; i++) {
             ContentValues values = new ContentValues();
-            values.put(shoppingListContract.Category.COLUMN_NAME_NAME, categoryData[i]);
+            values.put(shoppingListContract.Category.COLUMN_NAME, categoryData[i]);
             categoryIDs[i] = db.insert(shoppingListContract.Category.TABLE_NAME, null, values);
         }
 
@@ -177,7 +179,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
         for (String unit : unitData) {
             ContentValues values = new ContentValues();
-            values.put(shoppingListContract.Unit.COLUMN_NAME_NAME, unit);
+            values.put(shoppingListContract.Unit.COLUMN_NAME, unit);
             db.insert(shoppingListContract.Unit.TABLE_NAME, null, values);
         }
     }
@@ -185,8 +187,9 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
     // Helper function to populate table List with a default list
     private void insertList(SQLiteDatabase db) {
         ContentValues values = new ContentValues();
-        values.put(shoppingListContract.List.COLUMN_NAME_NAME, "Mijn boodschappenlijst");
-        values.put(shoppingListContract.List.COLUMN_NAME_IS_RECIPE, 0);
+        values.put(shoppingListContract.List.COLUMN_NAME,
+                mContext.getResources().getString(R.string.list_default));
+        values.put(shoppingListContract.List.COLUMN_IS_RECIPE, 0);
         db.insert(shoppingListContract.List.TABLE_NAME, null, values);
     }
 
@@ -210,8 +213,8 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         for (int i = 0; i < catLength; i++) {
             for (String item : itemData[i]) {
                 ContentValues values = new ContentValues();
-                values.put(shoppingListContract.Item.COLUMN_NAME_CATEGORY_ID, categoryIDs[i]);
-                values.put(shoppingListContract.Item.COLUMN_NAME_NAME, item);
+                values.put(shoppingListContract.Item.COLUMN_CATEGORY_ID, categoryIDs[i]);
+                values.put(shoppingListContract.Item.COLUMN_NAME, item);
                 db.insert(shoppingListContract.Item.TABLE_NAME, null, values);
             }
         }
