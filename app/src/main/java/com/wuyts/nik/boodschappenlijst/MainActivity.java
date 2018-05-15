@@ -3,6 +3,7 @@ package com.wuyts.nik.boodschappenlijst;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 //import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.wuyts.nik.boodschappenlijst.data.ShoppingListDbHelper;
 import com.wuyts.nik.boodschappenlijst.data.shoppingListContract;
@@ -21,9 +23,9 @@ import com.wuyts.nik.boodschappenlijst.data.shoppingListContract;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FloatingActionButton mFab;
     private ShoppingListDbHelper mDbHelper;
     private Cursor mListItemCursor;
-    private RecyclerView mItemList;
     private RecyclerView.Adapter mItemAdapter;
     private RecyclerView.LayoutManager mlayoutManager;
     private DrawerLayout mDrawerLayout;
@@ -35,18 +37,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Floating action button
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: create add item activity
+            }
+        });
+
         // Database: get list items
         mDbHelper = new ShoppingListDbHelper(this) ;
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         mListItemCursor = getListItemData(db);
 
         // RecyclerView
-        mItemList = findViewById(R.id.rv_list_items);
+        RecyclerView itemList = findViewById(R.id.rv_list_items);
         mlayoutManager = new LinearLayoutManager(this);
-        mItemList.setLayoutManager(mlayoutManager);
-        mItemList.setHasFixedSize(true);
+        itemList.setLayoutManager(mlayoutManager);
+        itemList.setHasFixedSize(true);
         mItemAdapter = new ItemAdapter(mListItemCursor);
-        mItemList.setAdapter(mItemAdapter);
+        itemList.setAdapter(mItemAdapter);
+        // Hide FAB when scrolling down
+        itemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && mFab.getVisibility() == View.VISIBLE) {
+                    mFab.hide();
+                } else if (dy < 0 && mFab.getVisibility() != View.VISIBLE) {
+                    mFab.show();
+                }
+            }
+        });
 
         // Toolbar
         Toolbar mainToolbar  = findViewById(R.id.main_toolbar);
