@@ -13,6 +13,9 @@ import com.wuyts.nik.boodschappenlijst.R;
 
 public class ShoppingListDbHelper extends SQLiteOpenHelper {
 
+    // TAG for Logcat
+    private static final String TAG = "DB";
+
     // Database name and version
     public static final String DATABASE_NAME = "ShoppingList.db";
     public static final int DATABASE_VERSION = 1;

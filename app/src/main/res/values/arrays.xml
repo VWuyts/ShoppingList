@@ -332,6 +332,7 @@
     </string-array>
 
     <integer-array name="shop_image_dara">
+        <item>@drawable/logo_albert_heijn</item>
         <item>@drawable/logo_aldi</item>
         <item>@drawable/logo_bio_planet</item>
         <item>@drawable/logo_carrefour</item>

@@ -8,12 +8,17 @@
     <string name="drawer_account">Mt account</string>
     <string name="drawer_help" translatable="false">Help \&amp; feedback</string>
     <string name="drawer_shops">My shops</string>
-    <!-- list items viewHolder -->
+    <!-- list items ViewHolder -->
     <string name="item_image">Product picture</string>
     <string name="promotion_image">Promotion flag</string>
     <string name="shop_image">Shop logo</string>
     <string name="placeholder_note" translatable="false">units - note</string>
     <string name="placeholder_name" translatable="false">Item name</string>
+    <!-- category ViewHolder -->
+    <string name="placeholder_category" translatable="false">Category</string>
+    <!-- empty list ViewHolder -->
+    <string name="empty_list">Your shopping list is empty</string>
+    <string name="add_product">Add a product to your list</string>
 
     <!-- shop data -->
     <string name="shop_ah" translatable="false">Albert Heijn</string>

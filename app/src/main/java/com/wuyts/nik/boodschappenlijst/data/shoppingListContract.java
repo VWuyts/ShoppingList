@@ -13,26 +13,26 @@ public final class shoppingListContract {
     // Inner class to define table Shop
     public static class Shop implements BaseColumns {
         public static final String TABLE_NAME = "Shop";
-        public static final String COLUMN_NAME = "Name";
+        public static final String COLUMN_NAME = "SName";
         public static final String COLUMN_IMAGE_ID = "ImageID";
     }
 
     // Inner class to define table Category
     public static class Category implements BaseColumns {
         public static final String TABLE_NAME = "Category";
-        public static final String COLUMN_NAME = "Name";
+        public static final String COLUMN_NAME = "CName";
     }
 
     // Inner class to define table Unit
     public static class Unit implements BaseColumns {
         public static final String TABLE_NAME = "Unit";
-        public static final String COLUMN_NAME = "Name";
+        public static final String COLUMN_NAME = "UName";
     }
 
     // Inner class to define table List
     public static class List implements BaseColumns {
         public static final String TABLE_NAME = "List";
-        public static final String COLUMN_NAME = "Name";
+        public static final String COLUMN_NAME = "LName";
         public static final String COLUMN_IS_RECIPE = "IsRecipe";
     }
 
@@ -50,7 +50,7 @@ public final class shoppingListContract {
         public static final String COLUMN_CATEGORY_ID = "CategoryID";
         public static final String COLUMN_SHOP_ID = "ShopID";
         public static final String COLUMN_UNIT_ID = "UnitID";
-        public static final String COLUMN_NAME = "Name";
+        public static final String COLUMN_NAME = "IName";
         public static final String COLUMN_IMAGE = "Image";
         public static final String COLUMN_NOTE = "Note";
         public static final String COLUMN_FIXED_SHOP = "FixedShop";

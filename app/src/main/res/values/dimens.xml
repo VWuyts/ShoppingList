@@ -2,5 +2,7 @@
 <resources>
     <dimen name="elevation_default">4dp</dimen>
     <dimen name="margin_side">16dp</dimen>
+    <dimen name="margin_top">40dp</dimen>
     <dimen name="padding_default">16dp</dimen>
+    <dimen name="text_larger">24sp</dimen>
 </resources>
