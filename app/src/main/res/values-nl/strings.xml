@@ -11,10 +11,13 @@
     <string name="drawer_shops">Mijn winkels</string>
     <!-- list items viewHolder -->
     <string name="image_description">Product foto</string>
-    <!-- empty list ViewHolder -->
+    <!-- empty list view -->
     <string name="empty_list">Je boodschappenlijst is leeg</string>
     <string name="add_product">Voeg een product toe</string>
-
+    <!-- add item tabs -->
+    <string name="favorites">Favorieten</string>
+    <string name="catalogue">Catalogus</string>
+    <string name="search">Zoek product</string>
 
     <!-- category data -->
     <string name="cat_vegetables">Groenten</string>
@@ -44,7 +47,7 @@
     <string name="list_default">Mijn boodschappenlijst</string>
     <!-- item data -->
     <string name="item_fruit_bananas">Bananen</string>
-    <string name="item_fruit_apples">Appels</string>
+    <string name="item_fruit_apples">Appelen</string>
     <string name="item_fruit_pears">Peren</string>
     <string name="item_fruit_grapes">Druiven</string>
     <string name="item_fruit_plums">Pruimen</string>

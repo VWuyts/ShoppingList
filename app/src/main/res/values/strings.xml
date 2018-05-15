@@ -14,11 +14,13 @@
     <string name="shop_image">Shop logo</string>
     <string name="placeholder_note" translatable="false">units - note</string>
     <string name="placeholder_name" translatable="false">Item name</string>
-    <!-- category ViewHolder -->
-    <string name="placeholder_category" translatable="false">Category</string>
-    <!-- empty list ViewHolder -->
+    <!-- empty list view -->
     <string name="empty_list">Your shopping list is empty</string>
     <string name="add_product">Add a product to your list</string>
+    <!-- add item tabs -->
+    <string name="favorites">Favorites</string>
+    <string name="catalogue">Catalogue</string>
+    <string name="search">Search product</string>
 
     <!-- shop data -->
     <string name="shop_ah" translatable="false">Albert Heijn</string>

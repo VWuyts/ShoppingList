@@ -1,5 +1,6 @@
 package com.wuyts.nik.boodschappenlijst;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 //import android.os.AsyncTask;
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: create add item activity
+                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper.close();
     }
 
-    // Show menu toolbar
+    // Show menu in toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -131,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-
             default:
                 // Invoke the superclass to handle the action
                 return super.onOptionsItemSelected(item);

@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_default"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -24,6 +24,7 @@
         android:text="@string/placeholder_name"
         app:layout_constraintLeft_toRightOf="@id/iv_item"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
          />
     <TextView
         android:id="@+id/tv_note"
@@ -53,4 +54,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+    <View style="@style/Divider" />
+
 </android.support.constraint.ConstraintLayout>
