@@ -2,15 +2,13 @@ package com.wuyts.nik.boodschappenlijst.data;
 
 import android.database.Cursor;
 
-import java.sql.Blob;
-
 public class ListItem {
     private long id;
     private String name;
     private byte[] image;
     private String note;
     private String category;
-    private byte[] shop;
+    private int shop;
     private String unit;
     private boolean isFixedShop;
     private boolean isFavorite;
@@ -19,7 +17,7 @@ public class ListItem {
     private boolean isPromotion;
     private boolean isBought;
 
-    public ListItem(long id, String name, byte[] image, String note, String category, byte[] shop,
+    public ListItem(long id, String name, byte[] image, String note, String category, int shop,
                     String unit, boolean isFixedShop, boolean isFavorite, long listId, int amount,
                     boolean isPromotion, boolean isBought) {
         this.id = id;
@@ -57,7 +55,7 @@ public class ListItem {
         return category;
     }
 
-    public byte[] getShop() {
+    public int getShop() {
         return shop;
     }
 
@@ -104,13 +102,16 @@ public class ListItem {
     }
 
     public static ListItem fromCursor(Cursor cursor) {
+        if (cursor == null)
+            return null;
+
         long id = cursor.getLong(cursor.getColumnIndex(shoppingListContract.ListItem._ID));
         String name = cursor.getString(cursor.getColumnIndex(shoppingListContract.Item.COLUMN_NAME));
         byte[] image = cursor.getBlob(cursor.getColumnIndex(shoppingListContract.Item.COLUMN_IMAGE));
         String note = cursor.getString(cursor.getColumnIndex(shoppingListContract.Item.COLUMN_NOTE));
         String category = cursor.getString
                 (cursor.getColumnIndex(shoppingListContract.Category.COLUMN_NAME));
-        byte[] shop = cursor.getBlob(cursor.getColumnIndex(shoppingListContract.Shop.COLUMN_NAME));
+        int shop = cursor.getInt(cursor.getColumnIndex(shoppingListContract.Shop.COLUMN_IMAGE_ID));
         String unit = cursor.getString(cursor.getColumnIndex(shoppingListContract.Unit.COLUMN_NAME));
         boolean isFixedShop = cursor.getInt
                 (cursor.getColumnIndex(shoppingListContract.Item.COLUMN_FIXED_SHOP)) > 0;
