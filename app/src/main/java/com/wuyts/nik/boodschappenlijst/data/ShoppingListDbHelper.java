@@ -2,19 +2,21 @@ package com.wuyts.nik.boodschappenlijst.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.wuyts.nik.boodschappenlijst.R;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Veronique Wuyts on 26/04/2018.
  */
 
 public class ShoppingListDbHelper extends SQLiteOpenHelper {
-
-    // TAG for Logcat
-    private static final String TAG = "DB";
 
     // Database name and version
     public static final String DATABASE_NAME = "ShoppingList.db";
@@ -149,6 +151,79 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Retrieve ListItem data
+    public Cursor getListItemData(SQLiteDatabase db, boolean sortCategory) {
+        String table = shoppingListContract.Item.TABLE_NAME +
+                " LEFT JOIN " + shoppingListContract.Category.TABLE_NAME +
+                " ON " + shoppingListContract.Item.COLUMN_CATEGORY_ID +
+                "=" + shoppingListContract.Category.TABLE_NAME +
+                "." + shoppingListContract.Category._ID +
+                " LEFT JOIN " + shoppingListContract.Shop.TABLE_NAME +
+                " ON " + shoppingListContract.Item.COLUMN_SHOP_ID +
+                "=" + shoppingListContract.Shop.TABLE_NAME +
+                "." + shoppingListContract.Shop._ID +
+                " LEFT JOIN " + shoppingListContract.Unit.TABLE_NAME +
+                " ON " + shoppingListContract.Item.COLUMN_UNIT_ID +
+                "=" + shoppingListContract.Unit.TABLE_NAME +
+                "." + shoppingListContract.Unit._ID +
+                " LEFT JOIN " + shoppingListContract.ListItem.TABLE_NAME +
+                " ON " + shoppingListContract.Item.TABLE_NAME +
+                "." + shoppingListContract.Item._ID +
+                "=" + shoppingListContract.ListItem.COLUMN_ITEM_ID;
+        String[] columns = {
+                shoppingListContract.Item.TABLE_NAME + "." + shoppingListContract.Item._ID,
+                //shoppingListContract.ListItem.TABLE_NAME + "." + shoppingListContract.ListItem._ID,
+                shoppingListContract.Item.COLUMN_NAME,
+                shoppingListContract.Item.COLUMN_IMAGE,
+                shoppingListContract.Item.COLUMN_NOTE,
+                shoppingListContract.Category.COLUMN_NAME,
+                shoppingListContract.Shop.COLUMN_IMAGE_ID,
+                shoppingListContract.Unit.COLUMN_NAME,
+                shoppingListContract.Item.COLUMN_FIXED_SHOP,
+                shoppingListContract.Item.COLUMN_FAVORITE,
+                shoppingListContract.ListItem.COLUMN_LIST_ID,
+                shoppingListContract.ListItem.COLUMN_AMOUNT,
+                shoppingListContract.ListItem.COLUMN_PROMOTION,
+                shoppingListContract.ListItem.COLUMN_BOUGHT
+        };
+        String orderBy = (sortCategory ? shoppingListContract.Category.TABLE_NAME +
+                "." + shoppingListContract.Category._ID + ", " : "") +
+                shoppingListContract.Item.COLUMN_NAME;
+        return db.query(true, table, columns, null, null,
+                null, null, orderBy, null);
+    }
+
+    // Retrieve favorite items
+    public Cursor getFavorites(SQLiteDatabase db) {
+        String table = shoppingListContract.Item.TABLE_NAME +
+                " LEFT JOIN " + shoppingListContract.Shop.TABLE_NAME +
+                " ON " + shoppingListContract.Item.COLUMN_SHOP_ID +
+                "=" + shoppingListContract.Shop.TABLE_NAME +
+                "." + shoppingListContract.Shop._ID;
+        String[] columns = {
+                shoppingListContract.Item.TABLE_NAME + "." + shoppingListContract.Item._ID,
+                shoppingListContract.Item.COLUMN_NAME,
+                shoppingListContract.Item.COLUMN_IMAGE,
+                shoppingListContract.Shop.COLUMN_IMAGE_ID,
+                shoppingListContract.Item.COLUMN_FIXED_SHOP
+        };
+        String selection = shoppingListContract.Item.COLUMN_FIXED_SHOP + "=?";
+        String[] selectionArgs = { "true" };
+        String orderBy = shoppingListContract.Item.COLUMN_NAME;
+
+        return db.query(table, columns, selection, selectionArgs, null, null, orderBy);
+    }
+
+    // Retrieve category names
+    public Cursor getCategories(SQLiteDatabase db) {
+        String table = shoppingListContract.Category.TABLE_NAME;
+        String[] columns = {
+                shoppingListContract.Category.COLUMN_NAME
+        };
+
+        return db.query(table, columns, null,null, null, null, null);
+    }
+
     // Helper function to populate table Shop
     private void insertShops(SQLiteDatabase db) {
         String[] shopData = mContext.getResources().getStringArray(R.array.shop_data);
@@ -196,7 +271,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         db.insert(shoppingListContract.List.TABLE_NAME, null, values);
     }
 
-    // Helper function to populate table Item
+    // Helper function to populate table CatalogueItem
     private void insertItem(SQLiteDatabase db, int catLength) {
         String[][] itemData = {
                 mContext.getResources().getStringArray(R.array.fruit_data),
@@ -221,5 +296,15 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
                 db.insert(shoppingListContract.Item.TABLE_NAME, null, values);
             }
         }
+        // Add picture to bananas
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.bananas);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+        byte[] image = bos.toByteArray();
+        ContentValues values = new ContentValues();
+        values.put(shoppingListContract.Item.COLUMN_IMAGE, image);
+        String selection = shoppingListContract.Item.COLUMN_NAME + " = ?";
+        String[] selectionArgs = {mContext.getResources().getString(R.string.item_fruit_bananas)};
+        db.update(shoppingListContract.Item.TABLE_NAME, values, selection, selectionArgs);
     }
 }

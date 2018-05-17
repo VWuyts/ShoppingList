@@ -14,10 +14,11 @@
     <!-- empty list view -->
     <string name="empty_list">Je boodschappenlijst is leeg</string>
     <string name="add_product">Voeg een product toe</string>
-    <!-- add item tabs -->
+    <!-- add item activity -->
     <string name="favorites">Favorieten</string>
     <string name="catalogue">Catalogus</string>
     <string name="search">Zoek product</string>
+    <string name="empty_favorites">Je hebt nog geen product bij je favorieten gezet</string>
 
     <!-- category data -->
     <string name="cat_vegetables">Groenten</string>

@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mFab;
     private ShoppingListDbHelper mDbHelper;
     private Cursor mListItemCursor;
-    private RecyclerView.Adapter mItemAdapter;
-    private RecyclerView.LayoutManager mlayoutManager;
+    private SQLiteDatabase mDb;
     private DrawerLayout mDrawerLayout;
     private boolean mSortCategory = true;
 
@@ -50,16 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
         // Database: get list items
         mDbHelper = new ShoppingListDbHelper(this) ;
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        mListItemCursor = getListItemData(db);
+        mDb = mDbHelper.getReadableDatabase();
+        mListItemCursor = mDbHelper.getListItemData(mDb, mSortCategory);
 
         // RecyclerView
         RecyclerView itemList = findViewById(R.id.rv_list_items);
-        mlayoutManager = new LinearLayoutManager(this);
-        itemList.setLayoutManager(mlayoutManager);
+        itemList.setLayoutManager(new LinearLayoutManager(this));
         itemList.setHasFixedSize(true);
-        mItemAdapter = new ItemAdapter(mListItemCursor);
-        itemList.setAdapter(mItemAdapter);
+        itemList.setAdapter(new ItemAdapter(mListItemCursor));
         // Hide FAB when scrolling down
         itemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -106,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mListItemCursor.close();
+        mDb.close();
         mDbHelper.close();
     }
 
@@ -180,5 +178,4 @@ public class MainActivity extends AppCompatActivity {
         return db.query(true, table, columns, null, null,
                 null, null, orderBy, null);
     }
-
 }

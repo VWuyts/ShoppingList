@@ -1,6 +1,14 @@
 package com.wuyts.nik.boodschappenlijst.data;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
+import com.wuyts.nik.boodschappenlijst.R;
+
+import java.io.ByteArrayOutputStream;
 
 public class ListItem {
     private long id;
@@ -45,6 +53,15 @@ public class ListItem {
 
     public byte[] getImage() {
         return image;
+    }
+
+    public byte[] getImage(Context context) {
+        Drawable drawable = context.getResources().getDrawable(R.drawable.bananas);
+        Bitmap b = ((BitmapDrawable) drawable).getBitmap();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        b.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+        return out.toByteArray();
     }
 
     public String getNote() {
