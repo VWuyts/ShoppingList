@@ -1,5 +1,6 @@
 package com.wuyts.nik.boodschappenlijst;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public class CatalogueFragment extends Fragment
         implements CategoryAdapter.ListItemClickListener {
 
+    private ArrayList<String> mCategoryList;
     private View mView;
     //private static final String TAG = "CatalogueFragment";
 
@@ -24,8 +26,8 @@ public class CatalogueFragment extends Fragment
         mView = inflater.inflate(R.layout.fragment_catalogue, container, false);
         // Retrieve ArrayList
         Bundle args = getArguments();
-        ArrayList<String> arrayList = args.getStringArrayList("categoryList");
-        setRecyclerView(arrayList);
+        mCategoryList= args.getStringArrayList("categoryList");
+        setRecyclerView(mCategoryList);
 
         return mView;
     }
@@ -45,6 +47,8 @@ public class CatalogueFragment extends Fragment
     // Implement listener function
     @Override
     public void onListItemClick(int clickedIndexItem) {
-        // TODO: intent to addCategoryItemActivity, send category String
+        Intent intent = new Intent(getActivity(), AddCategoryItemActivity.class);
+        intent.putExtra(Intent.EXTRA_TEXT, mCategoryList.get(clickedIndexItem));
+        startActivity(intent);
     }
 }
