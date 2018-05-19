@@ -16,11 +16,13 @@ import java.util.ArrayList;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder> {
 
-    private Context mContext;
     private ArrayList<Favorite> mArrayList;
+    private Context mContext;
+    private final ListItemClickListener mOnClickListener;
 
-    public FavoritesAdapter(ArrayList<Favorite> arrayList) {
+    FavoritesAdapter(ArrayList<Favorite> arrayList, ListItemClickListener listener) {
         mArrayList = arrayList;
+        mOnClickListener = listener;
     }
 
     @Override
@@ -55,7 +57,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
         return mArrayList != null ? mArrayList.size() : 0;
     }
 
-    class FavoriteViewHolder extends RecyclerView.ViewHolder {
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    class FavoriteViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         // Declaration of views in view holder
         ImageView mItemIV;
         TextView mNameTV;
@@ -66,8 +73,14 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
             mItemIV = favoriteView.findViewById(R.id.iv_fav_item);
             mNameTV = favoriteView.findViewById(R.id.tv_fav_name);
             mShopIV = favoriteView.findViewById(R.id.iv_fav_shop);
+            favoriteView.setOnClickListener(this);
+        }
 
-            // TODO: set click listener on FavoriteViewHolder
+        // Set click listener on FavoriteViewHolder
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
         }
     }
 }

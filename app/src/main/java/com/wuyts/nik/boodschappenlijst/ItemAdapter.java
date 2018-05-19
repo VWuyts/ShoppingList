@@ -17,16 +17,19 @@ import com.wuyts.nik.boodschappenlijst.data.ListItem;
 
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
+
     private Context mContext;
     private Cursor mCursor;
+    private final ListItemClickListener mOnClickListener;
     private boolean mDataValid;
     private int mIdColumn;
     //private static final String TAG = "ItemAdapter";
 
-    ItemAdapter(Cursor cursor) {
+    ItemAdapter(Cursor cursor, ListItemClickListener listener) {
         mCursor = cursor;
         mDataValid = mCursor != null;
         mIdColumn = mDataValid ? mCursor.getColumnIndex("_id") : -1;
+        mOnClickListener = listener;
         setHasStableIds(true);
     }
 
@@ -106,7 +109,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return oldCursor;
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    class ItemViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         // Declaration of views in view holder
         ImageView mItemIV;
         TextView mNameTV;
@@ -121,8 +129,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             mNoteTV = itemView.findViewById(R.id.tv_note);
             mPromotionIV = itemView.findViewById(R.id.iv_promotion);
             mShopIV = itemView.findViewById(R.id.iv_shop);
+            itemView.setOnClickListener(this);
+        }
 
-            // TODO: set click listener on itemViewHolder
+        // Set click listener on ItemViewHolder
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
         }
     }
 }

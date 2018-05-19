@@ -3,7 +3,6 @@ package com.wuyts.nik.boodschappenlijst;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-//import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -22,7 +21,8 @@ import android.view.View;
 import com.wuyts.nik.boodschappenlijst.data.ShoppingListDbHelper;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ItemAdapter.ListItemClickListener {
 
     private Cursor mListItemCursor;
     private DrawerLayout mDrawerLayout;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             emptyList.setVisibility(View.GONE);
             mItemList.setLayoutManager(new LinearLayoutManager(this));
             mItemList.setHasFixedSize(true);
-            mItemAdapter = new ItemAdapter(mListItemCursor);
+            mItemAdapter = new ItemAdapter(mListItemCursor, this);
             mItemList.setAdapter(mItemAdapter);
             // Hide FAB when scrolling down
             mItemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -159,5 +159,11 @@ public class MainActivity extends AppCompatActivity {
                 // Invoke the superclass to handle the action
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    // Implement listener function
+    @Override
+    public void onListItemClick(int clickedIndexItem) {
+        // TODO: implement listener function
     }
 }

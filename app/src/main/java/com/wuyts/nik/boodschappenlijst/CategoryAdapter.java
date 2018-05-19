@@ -11,11 +11,13 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private Context mContext;
     private ArrayList<String> mArrayList;
+    private Context mContext;
+    private final ListItemClickListener mOnClickListener;
 
-    public CategoryAdapter(ArrayList<String> arrayList) {
+    CategoryAdapter(ArrayList<String> arrayList, ListItemClickListener listener) {
         mArrayList = arrayList;
+        mOnClickListener = listener;
     }
 
     @Override
@@ -36,15 +38,26 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return mArrayList != null ? mArrayList.size() : 0;
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder {
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    class CategoryViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         // Declaration of views in view holder
         TextView mNameTV;
 
         CategoryViewHolder(View categoryView) {
             super(categoryView);
             mNameTV = categoryView.findViewById(R.id.tv_category_name);
+            categoryView.setOnClickListener(this);
         }
 
-        //TODO: set click listener on CategoryViewHolder
+        // Set click listener on CategoryViewHolder
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
+        }
     }
 }

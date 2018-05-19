@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class CatalogueFragment extends Fragment {
+public class CatalogueFragment extends Fragment
+        implements CategoryAdapter.ListItemClickListener {
 
     private View mView;
     //private static final String TAG = "CatalogueFragment";
@@ -38,6 +39,12 @@ public class CatalogueFragment extends Fragment {
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         }
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new CategoryAdapter(arrayList));
+        recyclerView.setAdapter(new CategoryAdapter(arrayList, this));
+    }
+
+    // Implement listener function
+    @Override
+    public void onListItemClick(int clickedIndexItem) {
+        // TODO: intent to addCategoryItemActivity, send category String
     }
 }

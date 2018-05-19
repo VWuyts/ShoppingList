@@ -189,8 +189,34 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         String orderBy = (sortCategory ? shoppingListContract.Category.TABLE_NAME +
                 "." + shoppingListContract.Category._ID + ", " : "") +
                 shoppingListContract.Item.COLUMN_NAME;
+
         return db.query(true, table, columns, null, null,
                 null, null, orderBy, null);
+    }
+
+    // Retrieve Item data per category
+    public Cursor getItemData(SQLiteDatabase db, String category) {
+        String table = shoppingListContract.Item.TABLE_NAME +
+                " LEFT JOIN " + shoppingListContract.Category.TABLE_NAME +
+                " ON " + shoppingListContract.Item.COLUMN_CATEGORY_ID +
+                "=" + shoppingListContract.Category.TABLE_NAME +
+                "." + shoppingListContract.Category._ID +
+                " LEFT JOIN " + shoppingListContract.Shop.TABLE_NAME +
+                " ON " + shoppingListContract.Item.COLUMN_SHOP_ID +
+                "=" + shoppingListContract.Shop.TABLE_NAME +
+                "." + shoppingListContract.Shop._ID;
+        String[] columns = {
+                shoppingListContract.Item.TABLE_NAME + "." + shoppingListContract.Item._ID,
+                shoppingListContract.Item.COLUMN_NAME,
+                shoppingListContract.Item.COLUMN_IMAGE,
+                shoppingListContract.Shop.COLUMN_IMAGE_ID,
+                shoppingListContract.Item.COLUMN_FIXED_SHOP
+        };
+        String selection = shoppingListContract.Category.COLUMN_NAME + " = ?";
+        String[] selectionArgs = {category};
+        String orderBY = shoppingListContract.Item.COLUMN_NAME;
+
+        return db.query(table, columns, selection, selectionArgs, null, null, orderBY);
     }
 
     // Retrieve favorite items

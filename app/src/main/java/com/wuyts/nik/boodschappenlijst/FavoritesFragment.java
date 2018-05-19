@@ -12,7 +12,8 @@ import com.wuyts.nik.boodschappenlijst.data.Favorite;
 
 import java.util.ArrayList;
 
-public class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends Fragment
+        implements FavoritesAdapter.ListItemClickListener {
 
     private View mView;
 
@@ -34,7 +35,12 @@ public class FavoritesFragment extends Fragment {
         RecyclerView recyclerView = mView.findViewById(R.id.rv_favorites);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new FavoritesAdapter(arrayList));
+        recyclerView.setAdapter(new FavoritesAdapter(arrayList, this));
     }
 
+    // Implement listener function
+    @Override
+    public void onListItemClick(int clickedIndexItem) {
+        // TODO: implement listener function
+    }
 }

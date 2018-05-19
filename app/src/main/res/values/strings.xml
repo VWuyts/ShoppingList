@@ -22,6 +22,7 @@
     <string name="catalogue">Catalogue</string>
     <string name="search">Search product</string>
     <string name="empty_favorites">You don\'t have any products marked as favorite</string>
+    <string name="plus" translatable="false">Plus</string>
 
 
     <!-- shop data -->

@@ -35,6 +35,19 @@
         android:contentDescription="@string/shop_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toLeftOf="@id/iv_fav_add" />
+    <ImageView
+        android:id="@+id/iv_fav_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_default"
+        android:paddingLeft="@dimen/padding_default"
+        android:paddingEnd="@dimen/padding_default"
+        android:paddingRight="@dimen/padding_default"
+        android:src="@drawable/ic_add_box"
+        android:contentDescription="@string/plus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <View style="@style/Divider" />
 </android.support.constraint.ConstraintLayout>

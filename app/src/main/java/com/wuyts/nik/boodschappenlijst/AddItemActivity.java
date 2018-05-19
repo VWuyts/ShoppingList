@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+//import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,10 +25,10 @@ import java.util.List;
 
 public class AddItemActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
     private ShoppingListDbHelper mDbHelper;
     private SQLiteDatabase mDb;
-    private static final String TAG = "AddItemActivity";
+    private ViewPager mViewPager;
+    //private static final String TAG = "AddItemActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class AddItemActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
 
         // Setup favorites fragment
-        Log.i(TAG, Integer.toString(favoritesCursor.getCount()));
+        //Log.i(TAG, Integer.toString(favoritesCursor.getCount()));
         if (favoritesCursor.getCount() > 0)
         {
             ArrayList<Favorite> favoritesList = Favorite.fromCursor(favoritesCursor);
