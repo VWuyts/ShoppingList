@@ -23,7 +23,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private int mIdColumn;
     //private static final String TAG = "ItemAdapter";
 
-    public ItemAdapter(Cursor cursor) {
+    ItemAdapter(Cursor cursor) {
         mCursor = cursor;
         mDataValid = mCursor != null;
         mIdColumn = mDataValid ? mCursor.getColumnIndex("_id") : -1;
@@ -76,7 +76,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         } else {
             holder.mShopIV.setVisibility(View.INVISIBLE);
         }
-
     }
 
     @Override
@@ -90,6 +89,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         return 0;
     }
 
+    public Cursor swapCursor(Cursor newCursor) {
+        if (newCursor == mCursor) {
+            return null;
+        }
+        Cursor oldCursor = mCursor;
+        mCursor = newCursor;
+        if (mCursor != null) {
+            mDataValid = true;
+            mIdColumn = mCursor.getColumnIndex("_id");
+        } else {
+            mDataValid = false;
+            mIdColumn = -1;
+        }
+        notifyDataSetChanged();
+        return oldCursor;
+    }
+
     class ItemViewHolder extends RecyclerView.ViewHolder {
         // Declaration of views in view holder
         ImageView mItemIV;
@@ -98,7 +114,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         ImageView mPromotionIV;
         ImageView mShopIV;
 
-        public ItemViewHolder(View itemView) {
+        ItemViewHolder(View itemView) {
             super(itemView);
             mItemIV = itemView.findViewById(R.id.iv_item);
             mNameTV = itemView.findViewById(R.id.tv_name);

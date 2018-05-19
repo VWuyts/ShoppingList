@@ -2,7 +2,6 @@ package com.wuyts.nik.boodschappenlijst;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,14 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.wuyts.nik.boodschappenlijst.data.CatalogueItem;
 import com.wuyts.nik.boodschappenlijst.data.Favorite;
@@ -47,7 +43,9 @@ public class AddItemActivity extends AppCompatActivity {
         Toolbar addItemToolbar = findViewById(R.id.add_item_toolbar);
         setSupportActionBar(addItemToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         // ViewPager
         mViewPager = findViewById(R.id.view_pager);
@@ -146,7 +144,7 @@ public class AddItemActivity extends AppCompatActivity {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -166,7 +164,7 @@ public class AddItemActivity extends AppCompatActivity {
         }
 
         // Add fragment and title
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mTitleList.add(title);
         }

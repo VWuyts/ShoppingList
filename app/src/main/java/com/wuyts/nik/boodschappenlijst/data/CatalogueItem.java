@@ -17,7 +17,7 @@ public class CatalogueItem implements Parcelable {
     private boolean isFixedShop;
     private static final String TAG = "CatalogueItem";
 
-    public CatalogueItem(long id, long categoryId, String name, byte[] image, int shop,
+    private CatalogueItem(long id, long categoryId, String name, byte[] image, int shop,
                          boolean isFixedShop) {
         this.id = id;
         this.categoryId = categoryId;

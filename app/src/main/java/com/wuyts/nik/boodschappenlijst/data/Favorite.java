@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class Favorite implements Parcelable {
 
-    private long id;
-    private String name;
-    private byte[] image;
-    private int shop;
-    private boolean isFixedShop;
+    private final long id;
+    private final String name;
+    private final byte[] image;
+    private final int shop;
+    private final boolean isFixedShop;
 
-    public Favorite(long id, String name, byte[] image, int shop, boolean isFixedShop) {
+    private Favorite(long id, String name, byte[] image, int shop, boolean isFixedShop) {
         this.id = id;
         this.name = name;
         this.image = image;

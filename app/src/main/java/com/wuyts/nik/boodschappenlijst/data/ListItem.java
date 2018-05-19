@@ -25,7 +25,7 @@ public class ListItem {
     private boolean isPromotion;
     private boolean isBought;
 
-    public ListItem(long id, String name, byte[] image, String note, String category, int shop,
+    private ListItem(long id, String name, byte[] image, String note, String category, int shop,
                     String unit, boolean isFixedShop, boolean isFavorite, long listId, int amount,
                     boolean isPromotion, boolean isBought) {
         this.id = id;
