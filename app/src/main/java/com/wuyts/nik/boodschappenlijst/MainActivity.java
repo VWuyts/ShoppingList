@@ -28,43 +28,35 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout mDrawerLayout;
     private FloatingActionButton mFab;
     private ItemAdapter mItemAdapter;
-    private RecyclerView mItemList;
     private ShoppingListDbHelper mDbHelper;
     private SQLiteDatabase mDb;
+    public static final String LIST_ID_KEY = "ListId";
     private boolean mSortCategory = true;
+    private long mListId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Floating action button
-        mFab = findViewById(R.id.fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Database: get list items
+        // Database: get list id and list items
         mDbHelper = new ShoppingListDbHelper(this) ;
         mDb = mDbHelper.getReadableDatabase();
+        mListId = mDbHelper.getDefaultListId(mDb);
         mListItemCursor = mDbHelper.getListItemData(mDb, mSortCategory);
 
         // RecyclerView
-        mItemList = findViewById(R.id.rv_list_items);
+        RecyclerView rvItemList = findViewById(R.id.rv_list_items);
         View emptyList = findViewById(R.id.include_empty_list);
         if (mListItemCursor.getCount() > 0) {
-            mItemList.setVisibility(View.VISIBLE);
+            rvItemList.setVisibility(View.VISIBLE);
             emptyList.setVisibility(View.GONE);
-            mItemList.setLayoutManager(new LinearLayoutManager(this));
-            mItemList.setHasFixedSize(true);
+            rvItemList.setLayoutManager(new LinearLayoutManager(this));
+            rvItemList.setHasFixedSize(true);
             mItemAdapter = new ItemAdapter(mListItemCursor, this);
-            mItemList.setAdapter(mItemAdapter);
+            rvItemList.setAdapter(mItemAdapter);
             // Hide FAB when scrolling down
-            mItemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            rvItemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
@@ -76,7 +68,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         } else {
-            mItemList.setVisibility(View.GONE);
+            rvItemList.setVisibility(View.GONE);
             emptyList.setVisibility(View.VISIBLE);
         }
 
@@ -110,6 +102,17 @@ public class MainActivity extends AppCompatActivity
                     return true;
                 }
             });
+
+        // Floating action button
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
+                intent.putExtra(LIST_ID_KEY, mListId);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

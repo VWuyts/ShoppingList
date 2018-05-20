@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder> {
 
-    private ArrayList<Favorite> mArrayList;
+    private final ArrayList<Favorite> mArrayList;
     private Context mContext;
     private final ListItemClickListener mOnClickListener;
 
@@ -64,9 +64,9 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
     class FavoriteViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // Declaration of views in view holder
-        ImageView mItemIV;
-        TextView mNameTV;
-        ImageView mShopIV;
+        final ImageView mItemIV;
+        final TextView mNameTV;
+        final ImageView mShopIV;
 
         FavoriteViewHolder(View favoriteView){
             super(favoriteView);

@@ -17,6 +17,7 @@ public class CatalogueFragment extends Fragment
 
     private ArrayList<String> mCategoryList;
     private View mView;
+    private long mListId;
     //private static final String TAG = "CatalogueFragment";
 
     public CatalogueFragment() {}
@@ -24,9 +25,12 @@ public class CatalogueFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_catalogue, container, false);
-        // Retrieve ArrayList
+
+        // Retrieve bundle data
         Bundle args = getArguments();
-        mCategoryList= args.getStringArrayList("categoryList");
+        mCategoryList= args.getStringArrayList(AddItemActivity.BUNDLE_CAT_LIST);
+        mListId = args.getLong(AddItemActivity.BUNDLE_LIST_ID, 1);
+
         setRecyclerView(mCategoryList);
 
         return mView;
@@ -49,6 +53,7 @@ public class CatalogueFragment extends Fragment
     public void onListItemClick(int clickedIndexItem) {
         Intent intent = new Intent(getActivity(), AddCategoryItemActivity.class);
         intent.putExtra(Intent.EXTRA_TEXT, mCategoryList.get(clickedIndexItem));
+        intent.putExtra(MainActivity.LIST_ID_KEY, mListId);
         startActivity(intent);
     }
 }

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 
 import com.wuyts.nik.boodschappenlijst.R;
 
@@ -151,9 +152,27 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Retrieve default List id
+    public long getDefaultListId(SQLiteDatabase db) {
+        String[] columns = {shoppingListContract.List._ID};
+        String selection = shoppingListContract.List.COLUMN_IS_RECIPE + " = ?";
+        String[] selectionArgs = {Integer.toString(0)};
+        Cursor cursor = db.query(shoppingListContract.List.TABLE_NAME, columns, selection,
+                selectionArgs, null, null, null);
+        cursor.moveToNext();
+        long listId = cursor.getLong(cursor.getColumnIndex(shoppingListContract.List._ID));
+        cursor.close();
+
+        return listId;
+    }
+
     // Retrieve ListItem data
     public Cursor getListItemData(SQLiteDatabase db, boolean sortCategory) {
-        String table = shoppingListContract.Item.TABLE_NAME +
+        String table = shoppingListContract.ListItem.TABLE_NAME +
+                " INNER JOIN " + shoppingListContract.Item.TABLE_NAME +
+                " ON " + shoppingListContract.ListItem.COLUMN_ITEM_ID +
+                "=" + shoppingListContract.Item.TABLE_NAME +
+                "." + shoppingListContract.Item._ID +
                 " LEFT JOIN " + shoppingListContract.Category.TABLE_NAME +
                 " ON " + shoppingListContract.Item.COLUMN_CATEGORY_ID +
                 "=" + shoppingListContract.Category.TABLE_NAME +
@@ -165,14 +184,10 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
                 " LEFT JOIN " + shoppingListContract.Unit.TABLE_NAME +
                 " ON " + shoppingListContract.Item.COLUMN_UNIT_ID +
                 "=" + shoppingListContract.Unit.TABLE_NAME +
-                "." + shoppingListContract.Unit._ID +
-                " LEFT JOIN " + shoppingListContract.ListItem.TABLE_NAME +
-                " ON " + shoppingListContract.Item.TABLE_NAME +
-                "." + shoppingListContract.Item._ID +
-                "=" + shoppingListContract.ListItem.COLUMN_ITEM_ID;
+                "." + shoppingListContract.Unit._ID;
         String[] columns = {
-                shoppingListContract.Item.TABLE_NAME + "." + shoppingListContract.Item._ID,
-                //shoppingListContract.ListItem.TABLE_NAME + "." + shoppingListContract.ListItem._ID,
+                //shoppingListContract.Item.TABLE_NAME + "." + shoppingListContract.Item._ID,
+                shoppingListContract.ListItem.TABLE_NAME + "." + shoppingListContract.ListItem._ID,
                 shoppingListContract.Item.COLUMN_NAME,
                 shoppingListContract.Item.COLUMN_IMAGE,
                 shoppingListContract.Item.COLUMN_NOTE,
@@ -250,6 +265,15 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         return db.query(table, columns, null,null, null, null, null);
     }
 
+    // Add catalogue item to shopping list
+    public void addListItem(SQLiteDatabase db, long itemId, long listId) {
+        ContentValues values = new ContentValues();
+        values.put(shoppingListContract.ListItem.COLUMN_ITEM_ID, itemId);
+        values.put(shoppingListContract.ListItem.COLUMN_LIST_ID, listId);
+
+        db.insert(shoppingListContract.ListItem.TABLE_NAME, null, values);
+    }
+
     // Helper function to populate table Shop
     private void insertShops(SQLiteDatabase db) {
         String[] shopData = mContext.getResources().getStringArray(R.array.shop_data);
@@ -289,7 +313,7 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
     }
 
     // Helper function to populate table List with a default list
-    private void insertList(SQLiteDatabase db) {
+    private void insertList(@NonNull SQLiteDatabase db) {
         ContentValues values = new ContentValues();
         values.put(shoppingListContract.List.COLUMN_NAME,
                 mContext.getResources().getString(R.string.list_default));

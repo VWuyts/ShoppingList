@@ -1,5 +1,6 @@
 package com.wuyts.nik.boodschappenlijst;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TabLayout;
@@ -10,13 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
+//import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 //import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.wuyts.nik.boodschappenlijst.data.CatalogueItem;
+import com.wuyts.nik.boodschappenlijst.data.Category;
 import com.wuyts.nik.boodschappenlijst.data.Favorite;
 import com.wuyts.nik.boodschappenlijst.data.ShoppingListDbHelper;
 
@@ -28,24 +29,26 @@ public class AddItemActivity extends AppCompatActivity {
     private ShoppingListDbHelper mDbHelper;
     private SQLiteDatabase mDb;
     private ViewPager mViewPager;
+    private long mListId;
     //private static final String TAG = "AddItemActivity";
+    public static final String BUNDLE_CAT_LIST = "categoryList";
+    public static final String BUNDLE_FAV_LIST = "favoritesList";
+    public static final String BUNDLE_LIST_ID = "listId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
+        // Retrieve list id
+        Intent intent = getIntent();
+        if (intent.hasExtra(MainActivity.LIST_ID_KEY)) {
+            mListId = intent.getLongExtra(MainActivity.LIST_ID_KEY, 1);
+        }
+
         // Database
         mDbHelper = new ShoppingListDbHelper(this);
-        mDb = mDbHelper.getReadableDatabase();
-
-        // Toolbar
-        Toolbar addItemToolbar = findViewById(R.id.add_item_toolbar);
-        setSupportActionBar(addItemToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        mDb = mDbHelper.getWritableDatabase(); // write needed in favorites fragment
 
         // ViewPager
         mViewPager = findViewById(R.id.view_pager);
@@ -66,6 +69,14 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {}
         });
+
+        // Toolbar
+        Toolbar addItemToolbar = findViewById(R.id.add_item_toolbar);
+        setSupportActionBar(addItemToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -80,8 +91,8 @@ public class AddItemActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_item_menu, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        //MenuItem searchItem = menu.findItem(R.id.action_search);
+        //SearchView searchView = (SearchView) searchItem.getActionView();
         // TODO: search action, see "Creating a Search Interface"
         return true;
     }
@@ -97,6 +108,16 @@ public class AddItemActivity extends AppCompatActivity {
                 // Invoke the superclass to handle the action
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    // Getter for ShoppingListDbHelper
+    public ShoppingListDbHelper getDbHelper() {
+        return mDbHelper;
+    }
+
+    // Getter for SQLiteDatabase
+    public SQLiteDatabase getDb() {
+        return mDb;
     }
 
     // Set up ViewPager
@@ -115,22 +136,23 @@ public class AddItemActivity extends AppCompatActivity {
             ArrayList<Favorite> favoritesList = Favorite.fromCursor(favoritesCursor);
             favoritesCursor.close();
             favFragment = new FavoritesFragment();
-            bundle.putParcelableArrayList("favoritesList", favoritesList);
+            bundle.putParcelableArrayList(BUNDLE_FAV_LIST, favoritesList);
+            bundle.putLong(BUNDLE_LIST_ID, mListId);
             favFragment.setArguments(bundle);
         } else {
             favoritesCursor.close();
             favFragment = new EmptyListFragment();
-            //favBundle.putString("message", getResources().getString(R.string.empty_favorites));
         }
 
         adapter.addFragment(favFragment, getResources().getString(R.string.favorites));
 
         // Get category data
         Cursor categoryCursor = mDbHelper.getCategories(mDb);
-        ArrayList<String> categoryList = CatalogueItem.categoriesFromCursor(categoryCursor);
+        ArrayList<String> categoryList = Category.categoriesFromCursor(categoryCursor);
         categoryCursor.close();
         bundle.clear();
-        bundle.putStringArrayList("categoryList", categoryList);
+        bundle.putStringArrayList(BUNDLE_CAT_LIST, categoryList);
+        bundle.putLong(BUNDLE_LIST_ID, mListId);
         Fragment catalogueFragment = new CatalogueFragment();
         catalogueFragment.setArguments(bundle);
         adapter.addFragment(catalogueFragment, getResources().getString(R.string.catalogue));

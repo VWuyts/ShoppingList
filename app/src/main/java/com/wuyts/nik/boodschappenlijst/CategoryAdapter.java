@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private ArrayList<String> mArrayList;
-    private Context mContext;
+    private final ArrayList<String> mArrayList;
     private final ListItemClickListener mOnClickListener;
 
     CategoryAdapter(ArrayList<String> arrayList, ListItemClickListener listener) {
@@ -22,8 +21,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.category, parent, false);
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.category, parent, false);
         return new CategoryViewHolder(view);
     }
 
@@ -45,7 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     class CategoryViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // Declaration of views in view holder
-        TextView mNameTV;
+        final TextView mNameTV;
 
         CategoryViewHolder(View categoryView) {
             super(categoryView);

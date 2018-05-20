@@ -116,11 +116,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     class ItemViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
         // Declaration of views in view holder
-        ImageView mItemIV;
-        TextView mNameTV;
-        TextView mNoteTV;
-        ImageView mPromotionIV;
-        ImageView mShopIV;
+        final ImageView mItemIV;
+        final TextView mNameTV;
+        final TextView mNoteTV;
+        final ImageView mPromotionIV;
+        final ImageView mShopIV;
 
         ItemViewHolder(View itemView) {
             super(itemView);

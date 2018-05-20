@@ -1,29 +1,27 @@
 package com.wuyts.nik.boodschappenlijst.data;
 
-import android.content.Context;
+//import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+//import android.graphics.Bitmap;
+//import android.graphics.drawable.BitmapDrawable;
+//import android.graphics.drawable.Drawable;
 
-import com.wuyts.nik.boodschappenlijst.R;
-
-import java.io.ByteArrayOutputStream;
+//import java.io.ByteArrayOutputStream;
 
 public class ListItem {
-    private long id;
-    private String name;
-    private byte[] image;
-    private String note;
-    private String category;
-    private int shop;
-    private String unit;
-    private boolean isFixedShop;
-    private boolean isFavorite;
-    private long listId;
-    private int amount;
-    private boolean isPromotion;
-    private boolean isBought;
+    private final  long id;
+    private final String name;
+    private final byte[] image;
+    private final String note;
+    private final String category;
+    private final int shop;
+    private final String unit;
+    private final boolean isFixedShop;
+    private final boolean isFavorite;
+    private final long listId;
+    private final int amount;
+    private final boolean isPromotion;
+    private final boolean isBought;
 
     private ListItem(long id, String name, byte[] image, String note, String category, int shop,
                     String unit, boolean isFixedShop, boolean isFavorite, long listId, int amount,
@@ -55,70 +53,58 @@ public class ListItem {
         return image;
     }
 
-    public byte[] getImage(Context context) {
+    /*public byte[] getImage(Context context) {
         Drawable drawable = context.getResources().getDrawable(R.drawable.bananas);
         Bitmap b = ((BitmapDrawable) drawable).getBitmap();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         b.compress(Bitmap.CompressFormat.PNG, 100, out);
 
         return out.toByteArray();
-    }
+    }*/
 
-    public String getNote() {
-        return note;
-    }
-
-    public String getCategory() {
+   public String getCategory() {
         return category;
     }
 
-    public int getShop() {
+   public int getShop() {
         return shop;
     }
 
-    public String getUnit() {
+   public String getUnit() {
         return unit;
     }
 
-    public boolean isFixedShop() {
+   public boolean isFixedShop() {
         return isFixedShop;
     }
 
-    public boolean isFavorite() {
+   public boolean isFavorite() {
         return isFavorite;
     }
 
-    public long getListId() {
-        return listId;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public boolean isPromotion() {
+   public boolean isPromotion() {
         return isPromotion;
     }
 
-    public boolean isBought() {
+   public boolean isBought() {
         return isBought;
     }
 
-    public String getCompleteNote() {
-        /*String completeNote = (note == null ? "" : note);
+   public String getCompleteNote() {
+        String completeNote = (note == null ? "" : note);
         if (amount > 0) {
             if (note != null) {
                 completeNote += " - ";
             }
             completeNote += Integer.toString(amount);
             completeNote += (unit == null ? "" : " " + unit);
-        }*/
-        String completeNote = Long.toString(id) + category;
+        }
+        //String completeNote = Long.toString(id) + category;
 
         return completeNote;
-    }
+   }
 
-    public static ListItem fromCursor(Cursor cursor) {
+   public static ListItem fromCursor(Cursor cursor) {
         if (cursor == null)
             return null;
 
@@ -145,5 +131,5 @@ public class ListItem {
 
         return new ListItem(id, name, image, note, category, shop, unit, isFixedShop, isFavorite,
                 listId, amount, isPromotion, isBought);
-    }
+   }
 }
