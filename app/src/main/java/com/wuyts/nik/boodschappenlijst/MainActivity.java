@@ -1,8 +1,9 @@
 package com.wuyts.nik.boodschappenlijst;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-//import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,65 +19,68 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.wuyts.nik.boodschappenlijst.data.ShoppingListDbHelper;
-import com.wuyts.nik.boodschappenlijst.data.shoppingListContract;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ItemAdapter.ListItemClickListener {
 
-    private FloatingActionButton mFab;
-    private ShoppingListDbHelper mDbHelper;
     private Cursor mListItemCursor;
-    private RecyclerView.Adapter mItemAdapter;
-    private RecyclerView.LayoutManager mlayoutManager;
     private DrawerLayout mDrawerLayout;
+    private FloatingActionButton mFab;
+    private ItemAdapter mItemAdapter;
+    private ShoppingListDbHelper mDbHelper;
+    private SQLiteDatabase mDb;
+    public static final String LIST_ID_KEY = "ListId";
     private boolean mSortCategory = true;
-
+    private long mListId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Floating action button
-        mFab = findViewById(R.id.fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: create add item activity
-            }
-        });
-
-        // Database: get list items
+        // Database: get list id and list items
         mDbHelper = new ShoppingListDbHelper(this) ;
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        mListItemCursor = getListItemData(db);
+        mDb = mDbHelper.getReadableDatabase();
+        mListId = mDbHelper.getDefaultListId(mDb);
+        mListItemCursor = mDbHelper.getListItemData(mDb, mSortCategory);
 
         // RecyclerView
-        RecyclerView itemList = findViewById(R.id.rv_list_items);
-        mlayoutManager = new LinearLayoutManager(this);
-        itemList.setLayoutManager(mlayoutManager);
-        itemList.setHasFixedSize(true);
-        mItemAdapter = new ItemAdapter(mListItemCursor);
-        itemList.setAdapter(mItemAdapter);
-        // Hide FAB when scrolling down
-        itemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0 && mFab.getVisibility() == View.VISIBLE) {
-                    mFab.hide();
-                } else if (dy < 0 && mFab.getVisibility() != View.VISIBLE) {
-                    mFab.show();
+        RecyclerView rvItemList = findViewById(R.id.rv_list_items);
+        View emptyList = findViewById(R.id.include_empty_list);
+        if (mListItemCursor.getCount() > 0) {
+            rvItemList.setVisibility(View.VISIBLE);
+            emptyList.setVisibility(View.GONE);
+            rvItemList.setLayoutManager(new LinearLayoutManager(this));
+            rvItemList.setHasFixedSize(true);
+            mItemAdapter = new ItemAdapter(mListItemCursor, this);
+            rvItemList.setAdapter(mItemAdapter);
+            // Hide FAB when scrolling down
+            rvItemList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if (dy > 0 && mFab.getVisibility() == View.VISIBLE) {
+                        mFab.hide();
+                    } else if (dy < 0 && mFab.getVisibility() != View.VISIBLE) {
+                        mFab.show();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            rvItemList.setVisibility(View.GONE);
+            emptyList.setVisibility(View.VISIBLE);
+        }
+
 
         // Toolbar
         Toolbar mainToolbar  = findViewById(R.id.main_toolbar);
         setSupportActionBar(mainToolbar);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
 
         // Navigation drawer
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -86,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
             new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
-                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     // set item as selected to persist highlight
                     menuItem.setChecked(true);
                     // close drawer when item is tapped
@@ -98,16 +102,28 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
+
+        // Floating action button
+        mFab = findViewById(R.id.fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
+                intent.putExtra(LIST_ID_KEY, mListId);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mListItemCursor.close();
+        mDb.close();
         mDbHelper.close();
     }
 
-    // Show menu toolbar
+    // Show menu in toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -117,12 +133,23 @@ public class MainActivity extends AppCompatActivity {
     // React to selection of items in the toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Cursor oldCursor;
         switch (item.getItemId()) {
             case R.id.action_sortAbc:
                 mSortCategory = false;
+                mListItemCursor = mDbHelper.getListItemData(mDb, mSortCategory);
+                oldCursor = mItemAdapter.swapCursor(mListItemCursor);
+                if (oldCursor != null) {
+                    oldCursor.close();
+                }
                 return true;
             case R.id.action_sortCategory:
                 mSortCategory = true;
+                mListItemCursor = mDbHelper.getListItemData(mDb, mSortCategory);
+                oldCursor = mItemAdapter.swapCursor(mListItemCursor);
+                if (oldCursor != null) {
+                    oldCursor.close();
+                }
                 return true;
             case R.id.action_sortManual:
                 //TODO: sort manually
@@ -131,53 +158,15 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-
             default:
                 // Invoke the superclass to handle the action
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    // Helper function to retrieve ListItem data
-    private Cursor getListItemData(SQLiteDatabase db) {
-        String table = shoppingListContract.Item.TABLE_NAME +
-                " LEFT JOIN " + shoppingListContract.Category.TABLE_NAME +
-                " ON " + shoppingListContract.Item.COLUMN_CATEGORY_ID +
-                "=" + shoppingListContract.Category.TABLE_NAME +
-                "." + shoppingListContract.Category._ID +
-                " LEFT JOIN " + shoppingListContract.Shop.TABLE_NAME +
-                " ON " + shoppingListContract.Item.COLUMN_SHOP_ID +
-                "=" + shoppingListContract.Shop.TABLE_NAME +
-                "." + shoppingListContract.Shop._ID +
-                " LEFT JOIN " + shoppingListContract.Unit.TABLE_NAME +
-                " ON " + shoppingListContract.Item.COLUMN_UNIT_ID +
-                "=" + shoppingListContract.Unit.TABLE_NAME +
-                "." + shoppingListContract.Unit._ID +
-                " LEFT JOIN " + shoppingListContract.ListItem.TABLE_NAME +
-                " ON " + shoppingListContract.Item.TABLE_NAME +
-                "." + shoppingListContract.Item._ID +
-                "=" + shoppingListContract.ListItem.COLUMN_ITEM_ID;
-        String[] columns = {
-                shoppingListContract.Item.TABLE_NAME + "." + shoppingListContract.Item._ID,
-                //shoppingListContract.ListItem.TABLE_NAME + "." + shoppingListContract.ListItem._ID,
-                shoppingListContract.Item.COLUMN_NAME,
-                shoppingListContract.Item.COLUMN_IMAGE,
-                shoppingListContract.Item.COLUMN_NOTE,
-                shoppingListContract.Category.COLUMN_NAME,
-                shoppingListContract.Shop.COLUMN_NAME,
-                shoppingListContract.Unit.COLUMN_NAME,
-                shoppingListContract.Item.COLUMN_FIXED_SHOP,
-                shoppingListContract.Item.COLUMN_FAVORITE,
-                shoppingListContract.ListItem.COLUMN_LIST_ID,
-                shoppingListContract.ListItem.COLUMN_AMOUNT,
-                shoppingListContract.ListItem.COLUMN_PROMOTION,
-                shoppingListContract.ListItem.COLUMN_BOUGHT
-        };
-        String orderBy = (mSortCategory ? shoppingListContract.Category.TABLE_NAME +
-                "." + shoppingListContract.Category._ID + ", " : "") +
-                shoppingListContract.Item.COLUMN_NAME;
-        return db.query(true, table, columns, null, null,
-                null, null, orderBy, null);
+    // Implement listener function
+    @Override
+    public void onListItemClick(int clickedIndexItem) {
+        // TODO: implement listener function
     }
-
 }

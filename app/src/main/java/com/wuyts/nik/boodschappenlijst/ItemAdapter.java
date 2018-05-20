@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 //import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,42 +18,25 @@ import com.wuyts.nik.boodschappenlijst.data.ListItem;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
+    private Context mContext;
     private Cursor mCursor;
+    private final ListItemClickListener mOnClickListener;
     private boolean mDataValid;
     private int mIdColumn;
     //private static final String TAG = "ItemAdapter";
 
-    public ItemAdapter(Cursor cursor) {
+    ItemAdapter(Cursor cursor, ListItemClickListener listener) {
         mCursor = cursor;
         mDataValid = mCursor != null;
         mIdColumn = mDataValid ? mCursor.getColumnIndex("_id") : -1;
+        mOnClickListener = listener;
         setHasStableIds(true);
-    }
-
-    class ItemViewHolder extends RecyclerView.ViewHolder {
-        // Declaration of views in view holder
-        ImageView mItemIV;
-        TextView mNameTV;
-        TextView mNoteTV;
-        ImageView mPromotionIV;
-        ImageView mShopIV;
-
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-            mItemIV = itemView.findViewById(R.id.iv_item);
-            mNameTV = itemView.findViewById(R.id.tv_name);
-            mNoteTV = itemView.findViewById(R.id.tv_note);
-            mPromotionIV = itemView.findViewById(R.id.iv_promotion);
-            mShopIV = itemView.findViewById(R.id.iv_shop);
-
-            // TODO: set click listener on itemView
-        }
     }
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        mContext = parent.getContext();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.list_item, parent, false);
         return new ItemViewHolder(view);
     }
 
@@ -67,6 +51,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         ListItem listItem = ListItem.fromCursor(mCursor);
         byte[] itemImage = listItem.getImage();
+        //byte[] itemImage = listItem.getImage(mContext);
         if (itemImage == null) {
             holder.mItemIV.setVisibility(View.INVISIBLE);
         } else {
@@ -88,12 +73,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             holder.mPromotionIV.setVisibility(View.INVISIBLE);
         }
         if (listItem.isFixedShop()) {
-            byte[] shop = listItem.getShop();
-            holder.mShopIV.setImageBitmap(BitmapFactory.decodeByteArray(shop, 0, shop.length));
+            int shop = listItem.getShop();
+            Drawable shopDrawable = mContext.getResources().getDrawable(shop);
+            holder.mShopIV.setImageDrawable(shopDrawable);
         } else {
             holder.mShopIV.setVisibility(View.INVISIBLE);
         }
-
     }
 
     @Override
@@ -105,5 +90,53 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         if (mDataValid && mCursor.moveToPosition(position))
             return mCursor.getLong(mIdColumn);
         return 0;
+    }
+
+    public Cursor swapCursor(Cursor newCursor) {
+        if (newCursor == mCursor) {
+            return null;
+        }
+        Cursor oldCursor = mCursor;
+        mCursor = newCursor;
+        if (mCursor != null) {
+            mDataValid = true;
+            mIdColumn = mCursor.getColumnIndex("_id");
+        } else {
+            mDataValid = false;
+            mIdColumn = -1;
+        }
+        notifyDataSetChanged();
+        return oldCursor;
+    }
+
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    class ItemViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+        // Declaration of views in view holder
+        final ImageView mItemIV;
+        final TextView mNameTV;
+        final TextView mNoteTV;
+        final ImageView mPromotionIV;
+        final ImageView mShopIV;
+
+        ItemViewHolder(View itemView) {
+            super(itemView);
+            mItemIV = itemView.findViewById(R.id.iv_item);
+            mNameTV = itemView.findViewById(R.id.tv_name);
+            mNoteTV = itemView.findViewById(R.id.tv_note);
+            mPromotionIV = itemView.findViewById(R.id.iv_promotion);
+            mShopIV = itemView.findViewById(R.id.iv_shop);
+            itemView.setOnClickListener(this);
+        }
+
+        // Set click listener on ItemViewHolder
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
+        }
     }
 }

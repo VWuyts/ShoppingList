@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
  * Created by Veronique Wuyts on 26/04/2018.
  */
 
-public final class shoppingListContract {
+final class shoppingListContract {
     // Private constructor to prevent instantiating the contract class
     private shoppingListContract() {}
 
@@ -44,7 +44,7 @@ public final class shoppingListContract {
         public static final String COLUMN_SEQUENCE = "Sequence";
     }
 
-    // Inner class to define table Item
+    // Inner class to define table CatalogueItem
     public static class Item implements BaseColumns {
         public static final String TABLE_NAME = "Item";
         public static final String COLUMN_CATEGORY_ID = "CategoryID";

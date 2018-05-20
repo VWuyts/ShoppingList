@@ -5,7 +5,7 @@
     <string name="action_sortCategory">Sort per category</string>
     <string name="action_sortManual">Sort manually</string>
     <!-- drawer -->
-    <string name="drawer_account">Mt account</string>
+    <string name="drawer_account">My account</string>
     <string name="drawer_help" translatable="false">Help \&amp; feedback</string>
     <string name="drawer_shops">My shops</string>
     <!-- list items ViewHolder -->
@@ -14,11 +14,16 @@
     <string name="shop_image">Shop logo</string>
     <string name="placeholder_note" translatable="false">units - note</string>
     <string name="placeholder_name" translatable="false">Item name</string>
-    <!-- category ViewHolder -->
-    <string name="placeholder_category" translatable="false">Category</string>
-    <!-- empty list ViewHolder -->
+    <!-- empty list view -->
     <string name="empty_list">Your shopping list is empty</string>
     <string name="add_product">Add a product to your list</string>
+    <!-- add item activity -->
+    <string name="favorites">Favorites</string>
+    <string name="catalogue">Catalogue</string>
+    <string name="search">Search product</string>
+    <string name="empty_favorites">You don\'t have any products marked as favorite</string>
+    <string name="plus" translatable="false">Plus</string>
+
 
     <!-- shop data -->
     <string name="shop_ah" translatable="false">Albert Heijn</string>
@@ -98,44 +103,44 @@
     <string name="item_veg_corn">Corn</string>
     <string name="item_veg_pumpkin">Pumpkin</string>
     <string name="item_veg_pepper">Pepper</string>
-    <string name="item_veg_ypepper">Yellow pepper</string>
-    <string name="item_veg_gpepper">Green pepper</string>
-    <string name="item_veg_rpepper">Red pepper</string>
+    <string name="item_veg_y_pepper">Yellow pepper</string>
+    <string name="item_veg_g_pepper">Green pepper</string>
+    <string name="item_veg_r_pepper">Red pepper</string>
     <string name="item_veg_asparagus">Asparagus</string>
-    <string name="item_veg_gasparagus">Green asparagus</string>
+    <string name="item_veg_g_asparagus">Green asparagus</string>
     <string name="item_veg_celery">Celery</string>
-    <string name="item_veg_wcelery">White celery</string>
-    <string name="item_veg_gcelery">Green celery</string>
+    <string name="item_veg_w_celery">White celery</string>
+    <string name="item_veg_g_celery">Green celery</string>
     <string name="item_meat_steak">Steak</string>
-    <string name="item_meat_psteak">Pork steak</string>
-    <string name="item_meat_pchop">Pork chop</string>
-    <string name="item_meat_vsteak">Veal steak</string>
-    <string name="item_meat_cbreast">Chicken breast</string>
-    <string name="item_meat_cleg">Chicken leg</string>
-    <string name="item_meat_lrack">Lamb rack</string>
-    <string name="item_meat_lcutlet">Lamb cutlet</string>
+    <string name="item_meat_p_steak">Pork steak</string>
+    <string name="item_meat_p_chop">Pork chop</string>
+    <string name="item_meat_v_steak">Veal steak</string>
+    <string name="item_meat_c_breast">Chicken breast</string>
+    <string name="item_meat_c_leg">Chicken leg</string>
+    <string name="item_meat_l_rack">Lamb rack</string>
+    <string name="item_meat_l_cutlet">Lamb cutlet</string>
     <string name="item_meat_rabbit">Rabbit</string>
-    <string name="item_meat_hsteak">Horse steak</string>
-    <string name="item_meat_tbreast">Turkey breast</string>
+    <string name="item_meat_h_steak">Horse steak</string>
+    <string name="item_meat_t_breast">Turkey breast</string>
     <string name="item_meat_minced">Minced meat</string>
-    <string name="item_meat_dbreast">Duck breast</string>
+    <string name="item_meat_d_breast">Duck breast</string>
     <string name="item_meat_escalope">Escalope ham cheese</string>
     <string name="item_meat_sausage">Sausage</string>
     <string name="item_meat_chipolata" translatable="false">Chipolata</string>
-    <string name="item_meat_csausage">Chicken sausage</string>
+    <string name="item_meat_c_sausage">Chicken sausage</string>
     <string name="item_meat_cutlet">Cutlet</string>
-    <string name="item_meat_vcutlet">Veal cutlet</string>
-    <string name="item_meat_ccutlet">Chicken cutlet</string>
+    <string name="item_meat_v_cutlet">Veal cutlet</string>
+    <string name="item_meat_c_cutlet">Chicken cutlet</string>
     <string name="item_meat_satay">Satay</string>
     <string name="item_fish_cod">Cod</string>
     <string name="item_fish_bass">Bass</string>
     <string name="item_fish_mackerel">Mackerel</string>
-    <string name="item_fish_smackerel">Smoked mackerel</string>
+    <string name="item_fish_s_mackerel">Smoked mackerel</string>
     <string name="item_fish_salmon">Salmon</string>
-    <string name="item_fish_ssalmon">Smoked salmon</string>
+    <string name="item_fish_s_salmon">Smoked salmon</string>
     <string name="item_fish_trout">Trout</string>
     <string name="item_fish_sole">Sole</string>
-    <string name="item_fish_yherring">Young herring</string>
+    <string name="item_fish_y_herring">Young herring</string>
     <string name="item_fish_tuna">Tuna</string>
     <string name="item_fish_ray">Ray</string>
     <string name="item_fish_shrimps">Shrimps</string>
@@ -148,10 +153,10 @@
     <string name="item_fish_plaice">Plaice</string>
     <string name="item_cheese_slices">Cheese slices</string>
     <string name="item_cheese">Cheese</string>
-    <string name="item_cheese_mslices">Mature cheese slices</string>
+    <string name="item_cheese_m_slices">Mature cheese slices</string>
     <string name="item_cheese_mature">Mature cheese</string>
-    <string name="item_cheese_emsclices">Extra mature cheese sclices</string>
-    <string name="item_cheese_emature">Extra mature cheese</string>
+    <string name="item_cheese_em_slices">Extra mature cheese slices</string>
+    <string name="item_cheese_e_mature">Extra mature cheese</string>
     <string name="item_cheese_goat">Goat cheese</string>
     <string name="item_cheese_herb">Herb cheese</string>
     <string name="item_cheese_spread">Cheese spread</string>
@@ -175,28 +180,28 @@
     <string name="item_dairy_spread">Spread</string>
     <string name="item_dairy_butter">Butter</string>
     <string name="item_dairy_milk">Milk</string>
-    <string name="item_dairy_sskmilk">Semi skimmed milk</string>
-    <string name="item_dairy_skmilk">Skimmed milk</string>
-    <string name="item_dairy_wmilk">Whole milk</string>
-    <string name="item_dairy_smilk">Soy milk</string>
-    <string name="item_dairy_omilk">Oat milk</string>
-    <string name="item_dairy_amilk">Almond milk</string>
-    <string name="item_dairy_cmilk">Chocolate milk</string>
-    <string name="item_dairy_rmilk">Rice milk</string>
+    <string name="item_dairy_ssk_milk">Semi skimmed milk</string>
+    <string name="item_dairy_sk_milk">Skimmed milk</string>
+    <string name="item_dairy_w_milk">Whole milk</string>
+    <string name="item_dairy_s_milk">Soy milk</string>
+    <string name="item_dairy_o_milk">Oat milk</string>
+    <string name="item_dairy_a_milk">Almond milk</string>
+    <string name="item_dairy_c_milk">Chocolate milk</string>
+    <string name="item_dairy_r_milk">Rice milk</string>
     <string name="item_dairy_buttermilk">Buttermilk</string>
     <string name="item_dairy_cream">Cream</string>
-    <string name="item_dairy_scream">Single cream</string>
-    <string name="item_dairy_dcream">Double cream</string>
-    <string name="item_dairy_soycream">Soy cream</string>
-    <string name="item_dairy_sourcream">Soured cream</string>
-    <string name="item_dairy_yoghurt" translatable="false">Yoghurt</string>
-    <string name="item_dairy_lfyoghurt">Low fat yoghurt</string>
-    <string name="item_dairy_fyoghurt">Fruit yoghurt</string>
-    <string name="item_dairy_gyoghurt">Greek yoghurt</string>
-    <string name="item_dairy_ydrink">Yoghurt drink</string>
-    <string name="item_dairy_rpudding">Rice pudding</string>
-    <string name="item_dairy_milkpudding">Milkpudding</string>
-    <string name="item_dairy_chmousse">Chocolate mousse</string>
+    <string name="item_dairy_s_cream">Single cream</string>
+    <string name="item_dairy_d_cream">Double cream</string>
+    <string name="item_dairy_soy_cream">Soy cream</string>
+    <string name="item_dairy_sour_cream">Soured cream</string>
+    <string name="item_dairy_yogurt">Yogurt</string>
+    <string name="item_dairy_lf_yogurt">Low fat yogurt</string>
+    <string name="item_dairy_f_yogurt">Fruit yogurt</string>
+    <string name="item_dairy_g_yogurt">Greek yogurt</string>
+    <string name="item_dairy_y_drink">Yogurt drink</string>
+    <string name="item_dairy_r_pudding">Rice pudding</string>
+    <string name="item_dairy_milk_pudding">Milk pudding</string>
+    <string name="item_dairy_ch_mousse">Chocolate mousse</string>
     <string name="item_dairy_tiramisu" translatable="false">Tiramisu</string>
     <string name="item_pasta" translatable="false">Pasta</string>
     <string name="item_pasta_gnocchi" translatable="false">Gnocchi</string>
@@ -217,8 +222,8 @@
     <string name="item_pasta_arborio">Arborio rice</string>
     <string name="item_pasta_buckwheat">Buckwheat</string>
     <string name="item_breakfast_jam">Jam</string>
-    <string name="item_breakfast_chspread">Chocolate spread</string>
-    <string name="item_breakfast_chsprinkles">Chocolate sprinkles</string>
+    <string name="item_breakfast_ch_spread">Chocolate spread</string>
+    <string name="item_breakfast_ch_sprinkles">Chocolate sprinkles</string>
     <string name="item_breakfast_honey">Honey</string>
     <string name="item_breakfast_granola">Granola</string>
     <string name="item_breakfast_rice">Rice cakes</string>
@@ -249,14 +254,14 @@
     <string name="item_bakery_ciabatta" translatable="false">Ciabatta</string>
     <string name="item_bakery_focaccia" translatable="false">Focaccia</string>
     <string name="item_spices_salt">Salt</string>
-    <string name="item_spices_wpepper">White pepper</string>
-    <string name="item_spices_bpepper">Black pepper</string>
-    <string name="item_spices_ppepper">Pink pepper</string>
+    <string name="item_spices_w_pepper">White pepper</string>
+    <string name="item_spices_b_pepper">Black pepper</string>
+    <string name="item_spices_p_pepper">Pink pepper</string>
     <string name="item_spices_basil">Basil</string>
     <string name="item_spices_dill">Dill</string>
-    <string name="item_spices_taragon">Taragon</string>
-    <string name="item_spices_cpepper">Cayenne pepper</string>
-    <string name="item_spices_chilli">Chilli</string>
+    <string name="item_spices_tarragon">Tarragon</string>
+    <string name="item_spices_c_pepper">Cayenne pepper</string>
+    <string name="item_spices_chili">Chili</string>
     <string name="item_spices_cloves">Cloves</string>
     <string name="item_spices_stew">Stew herbs</string>
     <string name="item_spices_thyme">Thyme</string>
@@ -276,8 +281,8 @@
     <string name="item_spices_cajun" translatable="false">Cajun</string>
     <string name="item_canned_kidney">Kidney beans</string>
     <string name="item_canned_borlotti">Borlotti beans</string>
-    <string name="item_canned_tcubes">Tomato cubes</string>
-    <string name="item_canned_tpaste">Tomato paste</string>
+    <string name="item_canned_t_cubes">Tomato cubes</string>
+    <string name="item_canned_t_paste">Tomato paste</string>
     <string name="item_canned_gherkins">Pickled gherkins</string>
     <string name="item_canned_capers">Capers</string>
     <string name="item_canned_onions">Pickled onions</string>
@@ -322,6 +327,5 @@
     <string name="item_frozen_seafood">Seafood</string>
     <string name="item_frozen_pizza" translatable="false">Pizza</string>
     <string name="item_frozen_sorbet" translatable="false">Sorbet</string>
-
 
 </resources>

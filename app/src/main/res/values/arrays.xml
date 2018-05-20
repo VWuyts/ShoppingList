@@ -83,48 +83,48 @@
         <item>@string/item_veg_corn</item>
         <item>@string/item_veg_pumpkin</item>
         <item>@string/item_veg_pepper</item>
-        <item>@string/item_veg_ypepper</item>
-        <item>@string/item_veg_gpepper</item>
-        <item>@string/item_veg_rpepper</item>
+        <item>@string/item_veg_y_pepper</item>
+        <item>@string/item_veg_g_pepper</item>
+        <item>@string/item_veg_r_pepper</item>
         <item>@string/item_veg_asparagus</item>
-        <item>@string/item_veg_gasparagus</item>
+        <item>@string/item_veg_g_asparagus</item>
         <item>@string/item_veg_celery</item>
-        <item>@string/item_veg_wcelery</item>
-        <item>@string/item_veg_gcelery</item>
+        <item>@string/item_veg_w_celery</item>
+        <item>@string/item_veg_g_celery</item>
     </string-array>
     <string-array name="meat_data">
         <item>@string/item_meat_steak</item>
-        <item>@string/item_meat_psteak</item>
-        <item>@string/item_meat_pchop</item>
-        <item>@string/item_meat_vsteak</item>
-        <item>@string/item_meat_cbreast</item>
-        <item>@string/item_meat_cleg</item>
-        <item>@string/item_meat_lrack</item>
-        <item>@string/item_meat_lcutlet</item>
+        <item>@string/item_meat_p_steak</item>
+        <item>@string/item_meat_p_chop</item>
+        <item>@string/item_meat_v_steak</item>
+        <item>@string/item_meat_c_breast</item>
+        <item>@string/item_meat_c_leg</item>
+        <item>@string/item_meat_l_rack</item>
+        <item>@string/item_meat_l_cutlet</item>
         <item>@string/item_meat_rabbit</item>
-        <item>@string/item_meat_hsteak</item>
-        <item>@string/item_meat_tbreast</item>
+        <item>@string/item_meat_h_steak</item>
+        <item>@string/item_meat_t_breast</item>
         <item>@string/item_meat_minced</item>
-        <item>@string/item_meat_dbreast</item>
+        <item>@string/item_meat_d_breast</item>
         <item>@string/item_meat_escalope</item>
         <item>@string/item_meat_sausage</item>
         <item>@string/item_meat_chipolata</item>
-        <item>@string/item_meat_csausage</item>
+        <item>@string/item_meat_c_sausage</item>
         <item>@string/item_meat_cutlet</item>
-        <item>@string/item_meat_vcutlet</item>
-        <item>@string/item_meat_ccutlet</item>
+        <item>@string/item_meat_v_cutlet</item>
+        <item>@string/item_meat_c_cutlet</item>
         <item>@string/item_meat_satay</item>
     </string-array>
     <string-array name="fish_data">
         <item>@string/item_fish_cod</item>
         <item>@string/item_fish_bass</item>
         <item>@string/item_fish_mackerel</item>
-        <item>@string/item_fish_smackerel</item>
+        <item>@string/item_fish_s_mackerel</item>
         <item>@string/item_fish_salmon</item>
-        <item>@string/item_fish_ssalmon</item>
+        <item>@string/item_fish_s_salmon</item>
         <item>@string/item_fish_trout</item>
         <item>@string/item_fish_sole</item>
-        <item>@string/item_fish_yherring</item>
+        <item>@string/item_fish_y_herring</item>
         <item>@string/item_fish_tuna</item>
         <item>@string/item_fish_ray</item>
         <item>@string/item_fish_shrimps</item>
@@ -139,10 +139,10 @@
     <string-array name="cheese_data">
         <item>@string/item_cheese_slices</item>
         <item>@string/item_cheese</item>
-        <item>@string/item_cheese_mslices</item>
+        <item>@string/item_cheese_m_slices</item>
         <item>@string/item_cheese_mature</item>
-        <item>@string/item_cheese_emsclices</item>
-        <item>@string/item_cheese_emature</item>
+        <item>@string/item_cheese_em_slices</item>
+        <item>@string/item_cheese_e_mature</item>
         <item>@string/item_cheese_goat</item>
         <item>@string/item_cheese_herb</item>
         <item>@string/item_cheese_spread</item>
@@ -168,28 +168,28 @@
         <item>@string/item_dairy_spread</item>
         <item>@string/item_dairy_butter</item>
         <item>@string/item_dairy_milk</item>
-        <item>@string/item_dairy_sskmilk</item>
-        <item>@string/item_dairy_skmilk</item>
-        <item>@string/item_dairy_wmilk</item>
-        <item>@string/item_dairy_smilk</item>
-        <item>@string/item_dairy_omilk</item>
-        <item>@string/item_dairy_amilk</item>
-        <item>@string/item_dairy_cmilk</item>
-        <item>@string/item_dairy_rmilk</item>
+        <item>@string/item_dairy_ssk_milk</item>
+        <item>@string/item_dairy_sk_milk</item>
+        <item>@string/item_dairy_w_milk</item>
+        <item>@string/item_dairy_s_milk</item>
+        <item>@string/item_dairy_o_milk</item>
+        <item>@string/item_dairy_a_milk</item>
+        <item>@string/item_dairy_c_milk</item>
+        <item>@string/item_dairy_r_milk</item>
         <item>@string/item_dairy_buttermilk</item>
         <item>@string/item_dairy_cream</item>
-        <item>@string/item_dairy_scream</item>
-        <item>@string/item_dairy_dcream</item>
-        <item>@string/item_dairy_soycream</item>
-        <item>@string/item_dairy_sourcream</item>
-        <item>@string/item_dairy_yoghurt</item>
-        <item>@string/item_dairy_lfyoghurt</item>
-        <item>@string/item_dairy_fyoghurt</item>
-        <item>@string/item_dairy_gyoghurt</item>
-        <item>@string/item_dairy_ydrink</item>
-        <item>@string/item_dairy_rpudding</item>
-        <item>@string/item_dairy_milkpudding</item>
-        <item>@string/item_dairy_chmousse</item>
+        <item>@string/item_dairy_s_cream</item>
+        <item>@string/item_dairy_d_cream</item>
+        <item>@string/item_dairy_soy_cream</item>
+        <item>@string/item_dairy_sour_cream</item>
+        <item>@string/item_dairy_yogurt</item>
+        <item>@string/item_dairy_lf_yogurt</item>
+        <item>@string/item_dairy_f_yogurt</item>
+        <item>@string/item_dairy_g_yogurt</item>
+        <item>@string/item_dairy_y_drink</item>
+        <item>@string/item_dairy_r_pudding</item>
+        <item>@string/item_dairy_milk_pudding</item>
+        <item>@string/item_dairy_ch_mousse</item>
         <item>@string/item_dairy_tiramisu</item>
     </string-array>
     <string-array name="pasta_data">
@@ -214,8 +214,8 @@
     </string-array>
     <string-array name="breakfast_data">
         <item>@string/item_breakfast_jam</item>
-        <item>@string/item_breakfast_chspread</item>
-        <item>@string/item_breakfast_chsprinkles</item>
+        <item>@string/item_breakfast_ch_spread</item>
+        <item>@string/item_breakfast_ch_sprinkles</item>
         <item>@string/item_breakfast_honey</item>
         <item>@string/item_breakfast_granola</item>
         <item>@string/item_breakfast_rice</item>
@@ -250,14 +250,14 @@
     </string-array>
     <string-array name="spices_data">
         <item>@string/item_spices_salt</item>
-        <item>@string/item_spices_wpepper</item>
-        <item>@string/item_spices_bpepper</item>
-        <item>@string/item_spices_ppepper</item>
+        <item>@string/item_spices_w_pepper</item>
+        <item>@string/item_spices_b_pepper</item>
+        <item>@string/item_spices_p_pepper</item>
         <item>@string/item_spices_basil</item>
         <item>@string/item_spices_dill</item>
-        <item>@string/item_spices_taragon</item>
-        <item>@string/item_spices_cpepper</item>
-        <item>@string/item_spices_chilli</item>
+        <item>@string/item_spices_tarragon</item>
+        <item>@string/item_spices_c_pepper</item>
+        <item>@string/item_spices_chili</item>
         <item>@string/item_spices_cloves</item>
         <item>@string/item_spices_stew</item>
         <item>@string/item_spices_thyme</item>
@@ -279,8 +279,8 @@
     <string-array name="canned_data">
         <item>@string/item_canned_kidney</item>
         <item>@string/item_canned_borlotti</item>
-        <item>@string/item_canned_tcubes</item>
-        <item>@string/item_canned_tpaste</item>
+        <item>@string/item_canned_t_cubes</item>
+        <item>@string/item_canned_t_paste</item>
         <item>@string/item_canned_gherkins</item>
         <item>@string/item_canned_capers</item>
         <item>@string/item_canned_onions</item>
