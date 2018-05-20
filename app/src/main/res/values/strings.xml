@@ -1,13 +1,29 @@
 <resources>
     <string name="app_name">Shopping List</string>
     <!-- action -->
+    <string name="action_clear_list">Clear list</string>
+    <string name="action_go_shopping">Go shopping</string>
+    <string name="action_share_list">Share list</string>
     <string name="action_sortAbc">Sort alphabetically</string>
     <string name="action_sortCategory">Sort per category</string>
     <string name="action_sortManual">Sort manually</string>
     <!-- drawer -->
+    <string name="drawer_about">About, terms and privacy</string>
     <string name="drawer_account">My account</string>
-    <string name="drawer_help" translatable="false">Help \&amp; feedback</string>
-    <string name="drawer_shops">My shops</string>
+    <string name="drawer_feedback">Give feedback</string>
+    <string name="drawer_help" translatable="false">Help</string>
+    <string name="drawer_list">My shopping list</string>
+    <string name="drawer_recipe">My recipes</string>
+    <string name="drawer_settings">Settings</string>
+    <string name="drawer_shops">Shops</string>
+    <string name="mailto">mailto:</string>
+    <string name="email" translatable="false">veronique.wuyts@student.thomasmore.be</string>
+    <string name="email_subject">Feedback Shopping List</string>
+    <!-- preferences -->
+    <string name="pref_key_notifications" translatable="false">notifications</string>
+    <string name="pref_title_notifications">Notifications</string>
+
+
     <!-- list items ViewHolder -->
     <string name="item_image">Product picture</string>
     <string name="promotion_image">Promotion flag</string>
@@ -23,7 +39,8 @@
     <string name="search">Search product</string>
     <string name="empty_favorites">You don\'t have any products marked as favorite</string>
     <string name="plus" translatable="false">Plus</string>
-
+    <!-- other -->
+    <string name="not_implemented">This feature is not yet implemented</string>
 
     <!-- shop data -->
     <string name="shop_ah" translatable="false">Albert Heijn</string>

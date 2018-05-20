@@ -1,17 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_go_shopping"
+        android:title="@string/action_go_shopping"
+        android:icon="@drawable/ic_shopping_cart"
+        app:showAsAction="ifRoom"
+        android:visible="true" />
     <!-- Overflow menu -->
-    <item android:id="@+id/action_sortAbc"
+    <item
+        android:id="@+id/action_sortAbc"
         android:title="@string/action_sortAbc"
         app:showAsAction="never"
         android:visible="true" />
-    <item android:id="@+id/action_sortCategory"
+    <item
+        android:id="@+id/action_sortCategory"
         android:title="@string/action_sortCategory"
         app:showAsAction="never"
         android:visible="true" />
-    <item android:id="@+id/action_sortManual"
+    <item
+        android:id="@+id/action_sortManual"
         android:title="@string/action_sortManual"
         app:showAsAction="never"
-        android:visible="true"/>
+        android:visible="true" />
+    <item
+        android:id="@+id/action_share_list"
+        android:title="@string/action_share_list"
+        app:showAsAction="never"
+        android:visible="true" />
+    <item
+        android:id="@+id/action_clear_list"
+        android:title="@string/action_clear_list"
+        app:showAsAction="never"
+        android:visible="true" />
+
 </menu>

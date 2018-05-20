@@ -14,8 +14,10 @@ import android.os.Bundle;
 //import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 //import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.wuyts.nik.boodschappenlijst.data.Category;
 import com.wuyts.nik.boodschappenlijst.data.Favorite;
@@ -93,15 +95,19 @@ public class AddItemActivity extends AppCompatActivity {
 
         //MenuItem searchItem = menu.findItem(R.id.action_search);
         //SearchView searchView = (SearchView) searchItem.getActionView();
-        // TODO: search action, see "Creating a Search Interface"
+        // TODO: search action, google "android creating a search interface" + option to create new Item if not found
         return true;
     }
 
     // React to selection of items in the toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Toast toast = Toast.makeText(this,
+                getResources().getString(R.string.not_implemented), Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         switch (item.getItemId()) {
             case R.id.action_search:
+                toast.show();
                 // TODO: search items
                 return true;
             default:

@@ -1,12 +1,23 @@
 <resources>
     <string name="app_name">Boodschappenlijst</string>
     <!-- action -->
+    <string name="action_clear_list">Maak lijst leeg</string>
+    <string name="action_go_shopping">Ga winkelen</string>
+    <string name="action_share_list">Deel lijst</string>
     <string name="action_sortAbc">Sorteer alfabetisch</string>
     <string name="action_sortCategory">Sorteer per categorie</string>
     <string name="action_sortManual">Sorteer manueel</string>
     <!-- drawer -->
+    <string name="drawer_about">Info, voorwaarden en privacy</string>
     <string name="drawer_account">Mijn account</string>
-    <string name="drawer_shops">Mijn winkels</string>
+    <string name="drawer_feedback">Feedback geven</string>
+    <string name="drawer_list">Mijn boodschappenlijst</string>
+    <string name="drawer_recipe">Mijn recepten</string>
+    <string name="drawer_settings">Instellingen</string>
+    <string name="drawer_shops">Winkels</string>
+    <string name="email_subject">Feedback Boodschappenlijst</string>
+    <!-- preferences -->
+    <string name="pref_title_notifications">Merldingen</string>
     <!-- list items viewHolder -->
     <string name="item_image">Product foto</string>
     <string name="promotion_image">Promotie vlag</string>
@@ -19,6 +30,8 @@
     <string name="catalogue">Catalogus</string>
     <string name="search">Zoek product</string>
     <string name="empty_favorites">Je hebt nog geen product bij je favorieten gezet</string>
+    <!-- other -->
+    <string name="not_implemented">Deze functie is nog niet geïmplementeerd</string>
 
     <!-- category data -->
     <string name="cat_vegetables">Groenten</string>

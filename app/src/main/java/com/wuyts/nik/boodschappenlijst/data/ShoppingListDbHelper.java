@@ -274,6 +274,14 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         db.insert(shoppingListContract.ListItem.TABLE_NAME, null, values);
     }
 
+    // Clear list
+    public void clearList(SQLiteDatabase db, long listId) {
+        String selection = shoppingListContract.ListItem.COLUMN_LIST_ID + " = ?";
+        String[] selectionArgs = {Long.toString(listId)};
+
+        db.delete(shoppingListContract.ListItem.TABLE_NAME, selection, selectionArgs);
+    }
+
     // Helper function to populate table Shop
     private void insertShops(SQLiteDatabase db) {
         String[] shopData = mContext.getResources().getStringArray(R.array.shop_data);

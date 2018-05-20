@@ -26,9 +26,13 @@
             android:elevation="@dimen/elevation_default"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/Theme.AppCompat.Light" />
+
         <include
             layout="@layout/fragment_empty_list"
-            android:id="@+id/include_empty_list" />
+            android:id="@+id/include_empty_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list_items"
