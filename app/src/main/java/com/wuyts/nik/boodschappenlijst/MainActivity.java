@@ -1,9 +1,11 @@
 package com.wuyts.nik.boodschappenlijst;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -25,11 +27,9 @@ import android.widget.Toast;
 
 import com.wuyts.nik.boodschappenlijst.data.ShoppingListDbHelper;
 
-import org.w3c.dom.Text;
-
 
 public class MainActivity extends AppCompatActivity
-        implements ItemAdapter.ListItemClickListener {
+        implements ItemAdapter.ListItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private Button mAddBtn;
     private Cursor mListItemCursor;
@@ -124,7 +124,8 @@ public class MainActivity extends AppCompatActivity
                                     Toast.LENGTH_SHORT).show();
                             return true;
                         case R.id.drawer_settings:
-
+                            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                            startActivity(settingsIntent);
                             return true;
                         case R.id.drawer_feedback:
                             // send mail
@@ -162,6 +163,10 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        // Register to OnSharedPreferenceChangeListener
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -170,6 +175,10 @@ public class MainActivity extends AppCompatActivity
         mListItemCursor.close();
         mDb.close();
         mDbHelper.close();
+
+        // Unregister to OnSharedPreferenceChangeListener
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
     // Show menu in toolbar
@@ -188,7 +197,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.action_go_shopping:
                 toast.show();
-                // TODO: go shopping activity
+                // TODO: create ShoppingActivity
                 return true;
             case R.id.action_sortAbc:
                 mSortCategory = false;
@@ -219,10 +228,48 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // Implement listener function
+    // Implement listener for RecyclerView item
     @Override
     public void onListItemClick(int clickedIndexItem) {
         // TODO: implement listener function
+    }
+
+    // Implement listener for SharedPreferences
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sp, String s) {
+        String keyNotificationOn = getResources().getString(R.string.pref_key_notification_on);
+        String keyNotificationHow = getResources().getString(R.string.pref_key_notifications_how);
+        String keyLock = getResources().getString(R.string.pref_key_lock);
+        Toast toast = Toast.makeText(this, R.string.pref_toast_notification_on, Toast.LENGTH_SHORT);
+
+        if (s.equals(keyNotificationOn)) {
+            if (sp.getBoolean(keyNotificationOn, false)) {
+                toast.show();
+            }
+            else {
+                toast.setText(R.string.pref_toast_notification_off);
+                toast.show();
+            }
+        }
+        if (s.equals(keyNotificationHow)) {
+            if (sp.getBoolean(keyNotificationOn, false)) {
+                String medium = sp.getString(keyNotificationHow,
+                        getResources().getString(R.string.pref_email));
+                toast.setText(getResources().getString(R.string.pref_toast_notifications_how) + " "
+                        + medium);
+                toast.show();
+            }
+        }
+        if (s.equals(keyLock)) {
+            if (sp.getBoolean(keyLock, false)) {
+                // TODO: set FLAG_KEEP_SCREEN_ON in ShoppingActivity
+            }
+            else {
+                // TODO: clear FLAG_KEEP_SCREEN_ON in ShoppingActivity
+            }
+            toast.setText(R.string.not_implemented);
+            toast.show();
+        }
     }
 
     // Change the cursor

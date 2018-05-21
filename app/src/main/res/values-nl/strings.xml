@@ -17,7 +17,20 @@
     <string name="drawer_shops">Winkels</string>
     <string name="email_subject">Feedback Boodschappenlijst</string>
     <!-- preferences -->
-    <string name="pref_title_notifications">Merldingen</string>
+    <string name="pref_group_notification">Meldingen</string>
+    <string name="pref_title_notification_on">Meldingen ontvangen</string>
+    <string name="pref_sum_notification_on">Ontvang wekelijks nieuwe tips en promoties</string>
+    <string name="pref_sum_notification_off">Ontvang geen wekelijkse nieuwe tips en promoties</string>
+    <string name="pref_toast_notification_on">Je zal wekelijks nieuwe tips en promoties ontvangen</string>
+    <string name="pref_toast_notification_off">Je zal geen nieuwe tips en promoties ontvangen</string>
+    <string name="pref_title_notifications_how">Ontvang meldingen via</string>
+    <string name="pref_toast_notifications_how">Je zal tips en promoties ontvangen via </string>
+    <string name="pref_entry_sms">Sms</string>
+    <string name="pref_group_option">Opties</string>
+    <string name="pref_title_lock">Scherm actief houden</string>
+    <string name="pref_sum_lock_on">Hou het scherm aan tijdens het winkelen</string>
+    <string name="pref_sum_lock_off">Laat het scherm uitvallen tijdens het winkelen</string>
+
     <!-- list items viewHolder -->
     <string name="item_image">Product foto</string>
     <string name="promotion_image">Promotie vlag</string>

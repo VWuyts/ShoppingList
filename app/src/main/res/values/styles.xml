@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/lime</item>
         <item name="colorPrimaryDark">@color/limeDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="preferenceTheme">
+            @style/PreferenceThemeOverlay
+        </item>
     </style>
 
     <style name="Divider">
