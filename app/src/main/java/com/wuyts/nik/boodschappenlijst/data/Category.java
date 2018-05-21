@@ -27,7 +27,7 @@ public class Category {
 
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex
-                    (shoppingListContract.Category.COLUMN_NAME));
+                    (ShoppingListContract.Category.COLUMN_NAME));
             arrayList.add(name);
         }
 

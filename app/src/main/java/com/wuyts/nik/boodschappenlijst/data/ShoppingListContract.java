@@ -6,9 +6,9 @@ import android.provider.BaseColumns;
  * Created by Veronique Wuyts on 26/04/2018.
  */
 
-final class shoppingListContract {
+public final class ShoppingListContract {
     // Private constructor to prevent instantiating the contract class
-    private shoppingListContract() {}
+    private ShoppingListContract() {}
 
     // Inner class to define table Shop
     public static class Shop implements BaseColumns {

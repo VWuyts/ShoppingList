@@ -14,28 +14,32 @@ public class ListItem {
     private final byte[] image;
     private final String note;
     private final String category;
-    private final int shop;
+    private final String shop;
+    private final int shopImageId;
     private final String unit;
     private final boolean isFixedShop;
     private final boolean isFavorite;
     private final long listId;
+    private final long itemId;
     private final int amount;
     private final boolean isPromotion;
     private final boolean isBought;
 
-    private ListItem(long id, String name, byte[] image, String note, String category, int shop,
-                    String unit, boolean isFixedShop, boolean isFavorite, long listId, int amount,
-                    boolean isPromotion, boolean isBought) {
+    private ListItem(long id, String name, byte[] image, String note, String category, String shop,
+                     int shopImageId, String unit, boolean isFixedShop, boolean isFavorite,
+                     long listId, long itemId, int amount, boolean isPromotion, boolean isBought) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.note = note;
         this.category = category;
         this.shop = shop;
+        this.shopImageId = shopImageId;
         this.unit = unit;
         this.isFixedShop = isFixedShop;
         this.isFavorite = isFavorite;
         this.listId = listId;
+        this.itemId = itemId;
         this.amount = amount;
         this.isPromotion = isPromotion;
         this.isBought = isBought;
@@ -62,35 +66,51 @@ public class ListItem {
         return out.toByteArray();
     }*/
 
-   public String getCategory() {
+    public String getNote() {
+        return note;
+    }
+
+    public String getCategory() {
         return category;
     }
 
-   public int getShop() {
+    public String getShop() {
         return shop;
     }
 
-   public String getUnit() {
+    public int getShopImageId() {
+        return shopImageId;
+    }
+
+    public String getUnit() {
         return unit;
     }
 
-   public boolean isFixedShop() {
+    public boolean isFixedShop() {
         return isFixedShop;
     }
 
-   public boolean isFavorite() {
+    public boolean isFavorite() {
         return isFavorite;
     }
 
-   public boolean isPromotion() {
+    public long getItemId() {
+        return itemId;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public boolean isPromotion() {
         return isPromotion;
     }
 
-   public boolean isBought() {
+    public boolean isBought() {
         return isBought;
     }
 
-   public String getCompleteNote() {
+    public String getCompleteNote() {
         String completeNote = (note == null ? "" : note);
         if (amount > 0) {
             if (note != null) {
@@ -102,34 +122,37 @@ public class ListItem {
         //String completeNote = Long.toString(id) + category;
 
         return completeNote;
-   }
+    }
 
-   public static ListItem fromCursor(Cursor cursor) {
+    public static ListItem fromCursor(Cursor cursor) {
         if (cursor == null)
             return null;
 
-        long id = cursor.getLong(cursor.getColumnIndex(shoppingListContract.ListItem._ID));
-        String name = cursor.getString(cursor.getColumnIndex(shoppingListContract.Item.COLUMN_NAME));
-        byte[] image = cursor.getBlob(cursor.getColumnIndex(shoppingListContract.Item.COLUMN_IMAGE));
-        String note = cursor.getString(cursor.getColumnIndex(shoppingListContract.Item.COLUMN_NOTE));
+        long id = cursor.getLong(cursor.getColumnIndex(ShoppingListContract.ListItem._ID));
+        String name = cursor.getString(cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_NAME));
+        byte[] image = cursor.getBlob(cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_IMAGE));
+        String note = cursor.getString(cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_NOTE));
         String category = cursor.getString
-                (cursor.getColumnIndex(shoppingListContract.Category.COLUMN_NAME));
-        int shop = cursor.getInt(cursor.getColumnIndex(shoppingListContract.Shop.COLUMN_IMAGE_ID));
-        String unit = cursor.getString(cursor.getColumnIndex(shoppingListContract.Unit.COLUMN_NAME));
+                (cursor.getColumnIndex(ShoppingListContract.Category.COLUMN_NAME));
+        String shop = cursor.getString(cursor.getColumnIndex(ShoppingListContract.Shop.COLUMN_NAME));
+        int shopImageId = cursor.getInt(cursor.getColumnIndex(ShoppingListContract.Shop.COLUMN_IMAGE_ID));
+        String unit = cursor.getString(cursor.getColumnIndex(ShoppingListContract.Unit.COLUMN_NAME));
         boolean isFixedShop = cursor.getInt
-                (cursor.getColumnIndex(shoppingListContract.Item.COLUMN_FIXED_SHOP)) > 0;
+                (cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_FIXED_SHOP)) > 0;
         boolean isFavorite = cursor.getInt
-                (cursor.getColumnIndex(shoppingListContract.Item.COLUMN_FAVORITE)) > 0;
+                (cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_FAVORITE)) > 0;
         long listId = cursor.getLong
-                (cursor.getColumnIndex(shoppingListContract.ListItem.COLUMN_LIST_ID));
+                (cursor.getColumnIndex(ShoppingListContract.ListItem.COLUMN_LIST_ID));
+        long itemId = cursor.getLong
+                (cursor.getColumnIndex(ShoppingListContract.ListItem.COLUMN_ITEM_ID));
         int amount = cursor.getInt
-                (cursor.getColumnIndex(shoppingListContract.ListItem.COLUMN_AMOUNT));
+                (cursor.getColumnIndex(ShoppingListContract.ListItem.COLUMN_AMOUNT));
         boolean isPromotion = cursor.getInt
-                (cursor.getColumnIndex(shoppingListContract.ListItem.COLUMN_PROMOTION)) > 0;
+                (cursor.getColumnIndex(ShoppingListContract.ListItem.COLUMN_PROMOTION)) > 0;
         boolean isBought = cursor.getInt
-                (cursor.getColumnIndex(shoppingListContract.ListItem.COLUMN_BOUGHT)) > 0;
+                (cursor.getColumnIndex(ShoppingListContract.ListItem.COLUMN_BOUGHT)) > 0;
 
-        return new ListItem(id, name, image, note, category, shop, unit, isFixedShop, isFavorite,
-                listId, amount, isPromotion, isBought);
-   }
+        return new ListItem(id, name, image, note, category, shop, shopImageId, unit, isFixedShop,
+                isFavorite, listId, itemId, amount, isPromotion, isBought);
+    }
 }

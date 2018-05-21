@@ -3,6 +3,7 @@
     <!-- action -->
     <string name="action_clear_list">Clear list</string>
     <string name="action_go_shopping">Go shopping</string>
+    <string name="action_favorites">Add to favorites</string>
     <string name="action_share_list">Share list</string>
     <string name="action_sortAbc">Sort alphabetically</string>
     <string name="action_sortCategory">Sort per category</string>
@@ -54,6 +55,9 @@
     <string name="shop_image">Shop logo</string>
     <string name="placeholder_note" translatable="false">units - note</string>
     <string name="placeholder_name" translatable="false">Item name</string>
+    <string name="placeholder_category" translatable="false">Item category</string>
+    <string name="placeholder_amount">Amount</string>
+    <string name="placeholder_note_only">Note …</string>
     <!-- empty list view -->
     <string name="empty_list">Your shopping list is empty</string>
     <string name="add_product">Add a product to your list</string>
@@ -65,8 +69,13 @@
     <string name="plus" translatable="false">Plus</string>
     <!-- other -->
     <string name="not_implemented">This feature is not yet implemented</string>
+    <string name="menu_edit_item">Edit item</string>
+    <string name="shop">Shop:</string>
+    <string name="cb_shop">Always this shop</string>
+    <string name="cb_promotion">Is in promotion</string>
 
     <!-- shop data -->
+    <string name="shop_null">Select shop</string>
     <string name="shop_ah" translatable="false">Albert Heijn</string>
     <string name="shop_aldi" translatable="false">Aldi</string>
     <string name="shop_bio_planet" translatable="false">Bio-Planet</string>
@@ -102,7 +111,7 @@
     <string name="unit_crate">Crate</string>
     <string name="unit_tray">Tray</string>
     <!-- list data -->
-    <string-array name="list_default">My shopping list</string-array>
+    <string name="list_default">My shopping list</string>
     <!-- item data -->
     <string name="item_fruit_bananas">Bananas</string>
     <string name="item_fruit_apples">Apples</string>

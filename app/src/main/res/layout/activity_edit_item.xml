@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditItemActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/edit_item_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lime"
+        android:elevation="@dimen/elevation_default"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/Theme.AppCompat.Light" />
+
+    <include
+        android:id="@+id/include_item_general"
+        layout="@layout/item_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edit_item_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <include
+        android:id="@+id/include_item_shop_promotion"
+        layout="@layout/item_shop_promotion"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/include_item_general"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

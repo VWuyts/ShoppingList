@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_default">
+
+    <TextView
+        android:id="@+id/tv_shop_edit_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_default"
+        android:paddingBottom="@dimen/padding_default"
+        android:text="@string/shop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <Spinner
+        android:id="@+id/sp_shop_edit_item"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_default"
+        android:paddingBottom="@dimen/padding_default"
+        android:layout_marginStart="@dimen/margin_side"
+        android:layout_marginLeft="@dimen/margin_side"
+        app:layout_constraintTop_toTopOf="@id/tv_shop_edit_item"
+        app:layout_constraintBottom_toBottomOf="@id/tv_shop_edit_item"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tv_shop_edit_item" />
+    <CheckBox
+        android:id="@+id/cb_shop_item_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_shop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sp_shop_edit_item" />
+    <CheckBox
+        android:id="@+id/cb_promotion_item_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_promotion"
+        android:layout_marginTop="@dimen/margin_side"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_shop_item_edit" />
+
+</android.support.constraint.ConstraintLayout>

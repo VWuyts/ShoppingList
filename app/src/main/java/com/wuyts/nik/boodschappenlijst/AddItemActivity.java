@@ -140,6 +140,7 @@ public class AddItemActivity extends AppCompatActivity {
         if (favoritesCursor.getCount() > 0)
         {
             ArrayList<Favorite> favoritesList = Favorite.fromCursor(favoritesCursor);
+            //Log.d(TAG, Integer.toString(favoritesList.size()));
             favoritesCursor.close();
             favFragment = new FavoritesFragment();
             bundle.putParcelableArrayList(BUNDLE_FAV_LIST, favoritesList);
@@ -149,14 +150,12 @@ public class AddItemActivity extends AppCompatActivity {
             favoritesCursor.close();
             favFragment = new EmptyListFragment();
         }
-
         adapter.addFragment(favFragment, getResources().getString(R.string.favorites));
 
         // Get category data
         Cursor categoryCursor = mDbHelper.getCategories(mDb);
         ArrayList<String> categoryList = Category.categoriesFromCursor(categoryCursor);
         categoryCursor.close();
-        bundle.clear();
         bundle.putStringArrayList(BUNDLE_CAT_LIST, categoryList);
         bundle.putLong(BUNDLE_LIST_ID, mListId);
         Fragment catalogueFragment = new CatalogueFragment();

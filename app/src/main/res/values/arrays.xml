@@ -18,6 +18,7 @@
 
     <!-- data arrays -->
     <string-array name="shop_data">
+        <item>@string/shop_null</item>
         <item>@string/shop_ah</item>
         <item>@string/shop_aldi</item>
         <item>@string/shop_bio_planet</item>
@@ -44,9 +45,9 @@
         <item>@string/cat_frozen</item>
     </string-array>
     <string-array name="unit_data">
+        <item>@string/unit_piece</item>
         <item>@string/unit_g</item>
         <item>@string/unit_kg</item>
-        <item>@string/unit_piece</item>
         <item>@string/unit_bag</item>
         <item>@string/unit_box</item>
         <item>@string/unit_jar</item>
@@ -347,6 +348,7 @@
     </string-array>
 
     <integer-array name="shop_image_dara">
+        <item>@drawable/logo_delhaize</item>
         <item>@drawable/logo_albert_heijn</item>
         <item>@drawable/logo_aldi</item>
         <item>@drawable/logo_bio_planet</item>
