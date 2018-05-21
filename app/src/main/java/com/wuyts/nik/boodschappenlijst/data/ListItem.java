@@ -45,10 +45,6 @@ public class ListItem {
         this.isBought = isBought;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }

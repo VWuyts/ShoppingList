@@ -14,14 +14,6 @@ public class Category {
         this.name = name;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public static ArrayList<String> categoriesFromCursor(Cursor cursor) {
         ArrayList<String> arrayList = new ArrayList<>();
 

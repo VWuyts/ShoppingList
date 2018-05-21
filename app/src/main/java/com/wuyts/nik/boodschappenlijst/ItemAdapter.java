@@ -72,9 +72,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         if (!listItem.isPromotion()) {
             holder.mPromotionIV.setVisibility(View.INVISIBLE);
         }
-        if (listItem.isFixedShop()) {
-            int shop = listItem.getShopImageId();
-            Drawable shopDrawable = mContext.getResources().getDrawable(shop);
+        int shopImageId = listItem.getShopImageId();
+        if (shopImageId > 0) {
+            Drawable shopDrawable = mContext.getResources().getDrawable(shopImageId);
             holder.mShopIV.setImageDrawable(shopDrawable);
         } else {
             holder.mShopIV.setVisibility(View.INVISIBLE);

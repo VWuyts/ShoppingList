@@ -347,17 +347,4 @@
         <item>@string/item_frozen_sorbet</item>
     </string-array>
 
-    <integer-array name="shop_image_dara">
-        <item>@drawable/logo_delhaize</item>
-        <item>@drawable/logo_albert_heijn</item>
-        <item>@drawable/logo_aldi</item>
-        <item>@drawable/logo_bio_planet</item>
-        <item>@drawable/logo_carrefour</item>
-        <item>@drawable/logo_colruyt</item>
-        <item>@drawable/logo_delhaize</item>
-        <item>@drawable/logo_lidl</item>
-        <item>@drawable/logo_okay</item>
-        <item>@drawable/logo_spar</item>
-    </integer-array>
-
 </resources>

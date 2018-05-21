@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wuyts.nik.boodschappenlijst.data.ListItem;
 import com.wuyts.nik.boodschappenlijst.data.ShoppingListDbHelper;
@@ -26,14 +26,23 @@ import com.wuyts.nik.boodschappenlijst.data.ShoppingListContract;
 
 public class EditItemActivity extends AppCompatActivity {
 
+    private CheckBox mPromoCB;
+    private CheckBox mShopCB;
     private Cursor mShopsCursor;
     private Cursor mUnitsCursor;
+    private EditText mAmountET;
+    private EditText mNoteET;
+    private ImageView mItemIV;
     private ListItem mListItem;
     private Menu mMenu;
     private MenuItem mFavAction;
     private ShoppingListDbHelper mdbHelper;
+    private SimpleCursorAdapter mUnitAdapter;
+    private SimpleCursorAdapter mShopAdapter;
+    private Spinner mShopSpinner;
+    private Spinner mUnitSpinner;
     private SQLiteDatabase mDb;
-    private long mItemId = 0;
+    private long mListItemId;
     private static final String TAG = "EditItemActivity";
 
     @Override
@@ -41,44 +50,47 @@ public class EditItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
 
+        // Retrieve data from intent
+        Intent intent = getIntent();
+        if (intent.hasExtra(MainActivity.LIST_ITEM_ID_KEY)) {
+            mListItemId = intent.getLongExtra(MainActivity.LIST_ITEM_ID_KEY, 0);
+        }
+
+        // Retrieve Views
+        View includeGeneral = findViewById(R.id.include_item_general);
+        View includeShopPromo = findViewById(R.id.include_item_shop_promotion);
+        mItemIV = includeGeneral.findViewById(R.id.iv_edit_item);
+        mAmountET = includeGeneral.findViewById(R.id.et_amount_edit_item);
+        mUnitSpinner = includeGeneral.findViewById(R.id.sp_unit_edit_item);
+        mNoteET = includeGeneral.findViewById(R.id.et_note_edit_item);
+        mShopSpinner = includeShopPromo.findViewById(R.id.sp_shop_edit_item);
+        mShopCB = includeShopPromo.findViewById(R.id.cb_shop_item_edit);
+        mPromoCB = includeShopPromo.findViewById(R.id.cb_promotion_item_edit);
+
         // Database: get units and shops
         mdbHelper = new ShoppingListDbHelper(this);
         mDb = mdbHelper.getWritableDatabase();
         mUnitsCursor = mdbHelper.getUnits(mDb);
         mShopsCursor = mdbHelper.getShops(mDb);
 
-        // Get units spinner
-        View includeGeneral = findViewById(R.id.include_item_general);
-        Spinner unitSpinner = includeGeneral.findViewById(R.id.sp_unit_edit_item);
-
         // Set cursor adapter for units spinner
-        SimpleCursorAdapter spUnitAdapter = new SimpleCursorAdapter(this,
+        mUnitAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
                 mUnitsCursor, new String[] {ShoppingListContract.Unit.COLUMN_NAME},
                 new int[] {android.R.id.text1}, 0);
-        spUnitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        unitSpinner.setAdapter(spUnitAdapter);
-
-        // Get shops spinner
-        View includeShopPromo = findViewById(R.id.include_item_shop_promotion);
-        Spinner shopSpinner = includeShopPromo.findViewById(R.id.sp_shop_edit_item);
+        mUnitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mUnitSpinner.setAdapter(mUnitAdapter);
 
         // Set cursor adapter for shops spinner
-        SimpleCursorAdapter spShopAdapter = new SimpleCursorAdapter(this,
+        mShopAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
                 mShopsCursor, new String[] {ShoppingListContract.Shop.COLUMN_NAME},
                 new int[] {android.R.id.text1}, 0);
-        shopSpinner.setAdapter(spShopAdapter);
-
-        // Retrieve itemId from intent
-        Intent intent = getIntent();
-        if (intent.hasExtra(MainActivity.ITEM_ID_KEY)) {
-            mItemId = intent.getLongExtra(MainActivity.ITEM_ID_KEY, 0);
-        }
-        //Log.d(TAG, "itemId = " + mItemId);
+        mShopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mShopSpinner.setAdapter(mShopAdapter);
 
         // Set data of ListItem
-        Cursor itemCursor = mdbHelper.getListItem(mDb, mItemId);
+        Cursor itemCursor = mdbHelper.getListItem(mDb, mListItemId);
         if (itemCursor.moveToNext()) {
             mListItem = ListItem.fromCursor(itemCursor);
             Log.d(TAG, "ListItem name = " + mListItem.getName());
@@ -86,46 +98,41 @@ public class EditItemActivity extends AppCompatActivity {
 
         // Setup views
         if (mListItem != null) {
-            ImageView imageIV = includeGeneral.findViewById(R.id.iv_edit_item);
             TextView nameTV = includeGeneral.findViewById(R.id.tv_name_edit_item);
             TextView categoryTV = includeGeneral.findViewById(R.id.tv_category_edit_item);
-            EditText amountET = includeGeneral.findViewById(R.id.et_amount_edit_item);
-            EditText noteET = includeGeneral.findViewById(R.id.et_note_edit_item);
-            CheckBox shopCB = includeShopPromo.findViewById(R.id.cb_shop_item_edit);
-            CheckBox promoCB = includeShopPromo.findViewById(R.id.cb_promotion_item_edit);
 
             byte[] image = mListItem.getImage();
             if (image != null) {
-                imageIV.setImageBitmap (BitmapFactory.decodeByteArray(image, 0, image.length));
+                mItemIV.setImageBitmap (BitmapFactory.decodeByteArray(image, 0, image.length));
             }
             else {
-                imageIV.setImageDrawable(getResources().getDrawable(R.drawable.ic_add_a_photo));
+                mItemIV.setImageDrawable(getResources().getDrawable(R.drawable.ic_add_a_photo));
             }
             nameTV.setText(mListItem.getName());
             categoryTV.setText(mListItem.getCategory());
             int amount = mListItem.getAmount();
             if (amount > 0) {
-                amountET.setText(amount);
+                mAmountET.setText(Integer.toString(amount));
             }
             String unit = mListItem.getUnit();
-            int index = getIndex(unitSpinner, unit);
+            int index = getUnitIndex(unit);
             if (unit != null && index >= 0) {
-                unitSpinner.setSelection(index);
+                mUnitSpinner.setSelection(index);
             }
             String note = mListItem.getNote();
             if (note != null) {
-                noteET.setText(note);
+                mNoteET.setText(note);
             }
-            boolean isFixedShop = mListItem.isFixedShop();
             String shop = mListItem.getShop();
-            index = getIndex(shopSpinner, shop);
-            if (shop != null && index >= 0 && isFixedShop) {
-                shopSpinner.setSelection(index);
-                shopCB.setChecked(true);
+            index = getShopIndex(shop);
+            if (shop != null && index >= 0) {
+                mShopSpinner.setSelection(index);
             }
-            boolean isPromotion = mListItem.isPromotion();
-            if (isPromotion) {
-                promoCB.setChecked(true);
+            if (mListItem.isFixedShop()) {
+                mShopCB.setChecked(true);
+            }
+            if (mListItem.isPromotion()) {
+                mPromoCB.setChecked(true);
             }
         }
 
@@ -173,10 +180,89 @@ public class EditItemActivity extends AppCompatActivity {
         }
     }
 
-    // Helper function to get index of value in spinner
-    private int getIndex(@NonNull Spinner spinner, String value) {
-        for (int index = 0; index < spinner.getCount(); index++) {
-            if (spinner.getItemAtPosition(index).equals(value)) {
+    // OnClick handler for remove button
+    public void removeFromList(View view) {
+        // Delete item from list
+        mdbHelper.deleteListItem(mDb, mListItemId);
+
+        // Go back to main activity
+        Intent intent = new Intent(EditItemActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    // onClick handler for done button
+    public void editListItem(View view) {
+        // TODO: change picture
+
+        // Get values which may be changed
+        String amountString = mAmountET.getText().toString().trim();
+        int amount = amountString.length() > 0 ? Integer.parseInt(amountString) : 0;
+        long unitId = -1;
+        if (amount > 0) {
+            int position = mUnitSpinner.getSelectedItemPosition();
+            Cursor cursor = (Cursor) mUnitAdapter.getItem(position);
+            unitId = cursor.getLong(cursor.getColumnIndex(ShoppingListContract.Unit._ID));
+            cursor.close();
+        }
+        String note = mNoteET.getText().toString().trim();
+        if (note.length() == 0) {
+            note = null;
+        }
+        long shopId = -1;
+        int position = mShopSpinner.getSelectedItemPosition();
+        if (position > 0) {
+            Cursor cursor = (Cursor) mShopAdapter.getItem(position);
+            shopId = cursor.getLong(cursor.getColumnIndex(ShoppingListContract.Shop._ID));
+            cursor.close();
+        }
+        int isFixedShop = mShopCB.isChecked() ? 1 : 0;
+        int promotion = mPromoCB.isChecked() ? 1 : 0;
+
+        // Edit item in database
+        mdbHelper.editListItem(mDb, mListItemId, mListItem.getItemId(), amount, unitId, note,
+                shopId, isFixedShop, promotion);
+
+        // Go back to main activity
+        Intent intent = new Intent(EditItemActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    // onClick handler for ImageView with picture of ListItem
+    public void getPicture(View view) {
+        Toast.makeText(this, R.string.not_implemented, Toast.LENGTH_SHORT).show();
+    }
+
+    // Helper function to get index of value in UnitSpinner
+    private int getUnitIndex(String value) {
+        if (value == null)
+            return -1;
+
+        Cursor cursor;
+        for (int index = 0; index < mUnitAdapter.getCount(); index++) {
+            cursor = (Cursor) mUnitAdapter.getItem(index);
+            String unit = cursor.getString(cursor
+                    .getColumnIndex(ShoppingListContract.Unit.COLUMN_NAME));
+            if (unit.equals(value)) {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+    // Helper function to get index of value in ShopSpinner
+    private int getShopIndex(String value) {
+        if (value == null)
+            return -1;
+
+        Cursor cursor;
+        for (int index = 0; index < mShopAdapter.getCount(); index++) {
+            cursor = (Cursor) mShopAdapter.getItem(index);
+            String unit = cursor.getString(cursor
+                    .getColumnIndex(ShoppingListContract.Shop.COLUMN_NAME));
+            if (unit.equals(value)) {
                 return index;
             }
         }

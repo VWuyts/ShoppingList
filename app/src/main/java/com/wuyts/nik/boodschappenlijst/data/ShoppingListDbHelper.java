@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 
+import com.wuyts.nik.boodschappenlijst.R;
+
 import java.io.ByteArrayOutputStream;
 
 /**
@@ -339,6 +341,44 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
         db.insert(ShoppingListContract.ListItem.TABLE_NAME, null, values);
     }
 
+    // Delete ListItem
+    public void deleteListItem(SQLiteDatabase db, long listItemId) {
+        String selection = ShoppingListContract.ListItem._ID + " = ?";
+        String[] selectionArgs = {Long.toString(listItemId)};
+
+        db. delete(ShoppingListContract.ListItem.TABLE_NAME, selection, selectionArgs);
+    }
+
+    // Edit ListItem
+    public void editListItem(SQLiteDatabase db, long listItemId, long itemId, int amount,
+                             long unitId, String note, long shopId, int isFixedShop, int promotion) {
+        String itemSelection = ShoppingListContract.Item._ID + " = ?";
+        String[] itemSelectionArgs = {Long.toString(itemId)};
+        String listItemSelection = ShoppingListContract.ListItem._ID + " = ?";
+        String[] listItemSelectionArgs = {Long.toString(listItemId)};
+        ContentValues itemValues = new ContentValues();
+        ContentValues listItemValues = new ContentValues();
+        if (amount > 0) {
+            listItemValues.put(ShoppingListContract.ListItem.COLUMN_AMOUNT, amount);
+            if (unitId > -1) {
+                itemValues.put(ShoppingListContract.Item.COLUMN_UNIT_ID, unitId);
+            }
+        }
+        if (note != null) {
+            itemValues.put(ShoppingListContract.Item.COLUMN_NOTE, note);
+        }
+        if (shopId > -1) {
+            itemValues.put(ShoppingListContract.Item.COLUMN_SHOP_ID, shopId);
+        }
+        itemValues.put(ShoppingListContract.Item.COLUMN_FIXED_SHOP, isFixedShop);
+        listItemValues.put(ShoppingListContract.ListItem.COLUMN_PROMOTION, promotion);
+
+        db.update(ShoppingListContract.Item.TABLE_NAME, itemValues, itemSelection,
+                itemSelectionArgs);
+        db.update(ShoppingListContract.ListItem.TABLE_NAME, listItemValues, listItemSelection,
+                listItemSelectionArgs);
+    }
+
     // Change state of isFavorite of ListItem
     public boolean toggleFavorite(SQLiteDatabase db, long itemId) {
         boolean isFavorite = true;
@@ -372,7 +412,18 @@ public class ShoppingListDbHelper extends SQLiteOpenHelper {
     // Helper function to populate table Shop
     private void insertShops(SQLiteDatabase db) {
         String[] shopData = mContext.getResources().getStringArray(R.array.shop_data);
-        int[] shopImageData = mContext.getResources().getIntArray(R.array.shop_image_dara);
+        int[] shopImageData = {
+                -1,
+                R.drawable.logo_albert_heijn,
+                R.drawable.logo_aldi,
+                R.drawable.logo_bio_planet,
+                R.drawable.logo_carrefour,
+                R.drawable.logo_colruyt,
+                R.drawable.logo_delhaize,
+                R.drawable.logo_lidl,
+                R.drawable.logo_okay,
+                R.drawable.logo_spar
+        };
 
         ContentValues values = new ContentValues();
         values.put(ShoppingListContract.Shop.COLUMN_NAME, shopData[0]);

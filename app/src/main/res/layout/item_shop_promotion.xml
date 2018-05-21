@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/padding_default">
+    android:paddingStart="@dimen/padding_default"
+    android:paddingLeft="@dimen/padding_default"
+    android:paddingEnd="@dimen/padding_default"
+    android:paddingRight="@dimen/padding_default">
 
     <TextView
         android:id="@+id/tv_shop_edit_item"

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     private boolean mSortCategory = true;
     private long mListId;
     public static final String LIST_ID_KEY = "ListId";
-    public static final String ITEM_ID_KEY = "ItemId";
+    public static final String LIST_ITEM_ID_KEY = "ListItemId";
     //private static final String TAG = "MainActivity";
 
     @Override
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Database: get list id and list items
+       // Database: get list id and list items
         mDbHelper = new ShoppingListDbHelper(this) ;
         mDb = mDbHelper.getReadableDatabase();
         mListId = mDbHelper.getDefaultListId(mDb);
@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_share_list:
                 toast.show();
                 // TODO: share list activity
+                return true;
             case R.id.action_clear_list:
                 mDbHelper.clearList(mDb, mListId);
                 changeCursor();
@@ -235,10 +236,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListItemClick(int clickedIndexItem) {
         //Log.d(TAG, "clickedIndexItem = " + Integer.toString(clickedIndexItem));
-        long itemId = mItemAdapter.getItemId(clickedIndexItem);
+        long listItemId = mItemAdapter.getItemId(clickedIndexItem);
         //Log.d(TAG, "itemId = " + itemId);
         Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
-        intent.putExtra(ITEM_ID_KEY, itemId);
+        intent.putExtra(LIST_ITEM_ID_KEY, listItemId);
         startActivity(intent);
     }
 

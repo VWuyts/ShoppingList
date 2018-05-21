@@ -5,7 +5,6 @@
     <dimen name="margin_top">40dp</dimen>
     <dimen name="padding_default">16dp</dimen>
     <dimen name="padding_small">8dp</dimen>
-    <dimen name="text_larger">20sp</dimen>
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="nav_header_height">192dp</dimen>
     <dimen name="image_height">100dp</dimen>
