@@ -73,6 +73,8 @@
     <string name="shop">Shop:</string>
     <string name="cb_shop">Always this shop</string>
     <string name="cb_promotion">Is in promotion</string>
+    <string name="btn_remove">Delete</string>
+    <string name="btn_done">Done</string>
 
     <!-- shop data -->
     <string name="shop_null">Select shop</string>

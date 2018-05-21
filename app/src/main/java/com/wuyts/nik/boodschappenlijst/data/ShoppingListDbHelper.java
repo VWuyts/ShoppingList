@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 
-import com.wuyts.nik.boodschappenlijst.R;
-
 import java.io.ByteArrayOutputStream;
 
 /**

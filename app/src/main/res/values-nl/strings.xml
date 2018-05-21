@@ -52,6 +52,8 @@
     <string name="shop">Winkel:</string>
     <string name="cb_shop">Altijd deze winkel</string>
     <string name="cb_promotion">Staat in promotie</string>
+    <string name="btn_remove">Verwijderen</string>
+    <string name="btn_done">Klaar</string>
 
     <!-- shop data -->
     <string name="shop_null">Selecteer winkel</string>

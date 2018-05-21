@@ -34,4 +34,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <include
+        android:id="@+id/include_edit_buttons"
+        layout="@layout/edit_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_top"
+        android:layout_marginLeft="@dimen/margin_top"
+        android:layout_marginEnd="@dimen/margin_top"
+        android:layout_marginRight="@dimen/margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include_item_shop_promotion" />
+
 </android.support.constraint.ConstraintLayout>
