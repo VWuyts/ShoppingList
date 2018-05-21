@@ -3,6 +3,7 @@ package com.wuyts.nik.boodschappenlijst.data;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+//import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class Favorite implements Parcelable {
     private final byte[] image;
     private final int shop;
     private final boolean isFixedShop;
+    //private static final String TAG = "Favorite";
 
     private Favorite(long id, String name, byte[] image, int shop, boolean isFixedShop) {
         this.id = id;
@@ -46,18 +48,18 @@ public class Favorite implements Parcelable {
         ArrayList<Favorite> arrayList = new ArrayList<>();
 
         while (cursor.moveToNext()) {
-            long id = cursor.getLong(cursor.getColumnIndex(shoppingListContract.Item._ID));
+            long id = cursor.getLong(cursor.getColumnIndex(ShoppingListContract.Item._ID));
             String name = cursor.getString
-                    (cursor.getColumnIndex(shoppingListContract.Item.COLUMN_NAME));
+                    (cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_NAME));
             byte[] image = cursor.getBlob
-                    (cursor.getColumnIndex(shoppingListContract.Item.COLUMN_IMAGE));
+                    (cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_IMAGE));
             int shop = cursor.getInt
-                    (cursor.getColumnIndex(shoppingListContract.Shop.COLUMN_IMAGE_ID));
+                    (cursor.getColumnIndex(ShoppingListContract.Shop.COLUMN_IMAGE_ID));
             boolean isFixedShop = cursor.getInt
-                    (cursor.getColumnIndex(shoppingListContract.Item.COLUMN_FIXED_SHOP)) > 0;
+                    (cursor.getColumnIndex(ShoppingListContract.Item.COLUMN_FIXED_SHOP)) > 0;
             arrayList.add(new Favorite(id, name, image, shop, isFixedShop));
         }
-
+        //Log.d(TAG, "arrayList count = " + Integer.toString(arrayList.size()));
         return arrayList;
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class FavoritesFragment extends Fragment
     private ArrayList<Favorite> mArrayList;
     private View mView;
     private long mListId;
+    private static final String TAG = "FavoritesFragment";
 
     public FavoritesFragment() {}
 
@@ -31,7 +33,7 @@ public class FavoritesFragment extends Fragment
         Bundle args = getArguments();
         mArrayList = args.getParcelableArrayList(AddItemActivity.BUNDLE_FAV_LIST);
         mListId = args.getLong(AddItemActivity.BUNDLE_LIST_ID, 1);
-
+        Log.d(TAG, "mArrayList size = " + Integer.toString(mArrayList.size()));
         setRecyclerView(mArrayList);
 
         return mView;

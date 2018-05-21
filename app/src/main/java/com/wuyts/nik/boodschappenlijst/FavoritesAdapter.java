@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,12 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
     private final ArrayList<Favorite> mArrayList;
     private Context mContext;
     private final ListItemClickListener mOnClickListener;
+    private static final String TAG = "FavoritesAdapter";
 
     FavoritesAdapter(ArrayList<Favorite> arrayList, ListItemClickListener listener) {
         mArrayList = arrayList;
         mOnClickListener = listener;
+        Log.d(TAG, "arrayList size = " + Integer.toString(mArrayList.size()));
     }
 
     @Override

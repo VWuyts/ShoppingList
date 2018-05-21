@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+//import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,16 +41,18 @@ public class MainActivity extends AppCompatActivity
     private ShoppingListDbHelper mDbHelper;
     private SQLiteDatabase mDb;
     private View  mEmptyList;
-    public static final String LIST_ID_KEY = "ListId";
     private boolean mSortCategory = true;
     private long mListId;
+    public static final String LIST_ID_KEY = "ListId";
+    public static final String LIST_ITEM_ID_KEY = "ListItemId";
+    //private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Database: get list id and list items
+       // Database: get list id and list items
         mDbHelper = new ShoppingListDbHelper(this) ;
         mDb = mDbHelper.getReadableDatabase();
         mListId = mDbHelper.getDefaultListId(mDb);
@@ -214,6 +217,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_share_list:
                 toast.show();
                 // TODO: share list activity
+                return true;
             case R.id.action_clear_list:
                 mDbHelper.clearList(mDb, mListId);
                 changeCursor();
@@ -231,7 +235,12 @@ public class MainActivity extends AppCompatActivity
     // Implement listener for RecyclerView item
     @Override
     public void onListItemClick(int clickedIndexItem) {
-        // TODO: implement listener function
+        //Log.d(TAG, "clickedIndexItem = " + Integer.toString(clickedIndexItem));
+        long listItemId = mItemAdapter.getItemId(clickedIndexItem);
+        //Log.d(TAG, "itemId = " + itemId);
+        Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
+        intent.putExtra(LIST_ITEM_ID_KEY, listItemId);
+        startActivity(intent);
     }
 
     // Implement listener for SharedPreferences
@@ -263,12 +272,14 @@ public class MainActivity extends AppCompatActivity
         if (s.equals(keyLock)) {
             if (sp.getBoolean(keyLock, false)) {
                 // TODO: set FLAG_KEEP_SCREEN_ON in ShoppingActivity
+                toast.setText(R.string.not_implemented);
+                toast.show();
             }
             else {
                 // TODO: clear FLAG_KEEP_SCREEN_ON in ShoppingActivity
+                toast.setText(R.string.not_implemented);
+                toast.show();
             }
-            toast.setText(R.string.not_implemented);
-            toast.show();
         }
     }
 
