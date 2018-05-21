@@ -1,13 +1,53 @@
 <resources>
     <string name="app_name">Shopping List</string>
     <!-- action -->
+    <string name="action_clear_list">Clear list</string>
+    <string name="action_go_shopping">Go shopping</string>
+    <string name="action_share_list">Share list</string>
     <string name="action_sortAbc">Sort alphabetically</string>
     <string name="action_sortCategory">Sort per category</string>
     <string name="action_sortManual">Sort manually</string>
     <!-- drawer -->
+    <string name="drawer_about">About, terms and privacy</string>
     <string name="drawer_account">My account</string>
-    <string name="drawer_help" translatable="false">Help \&amp; feedback</string>
-    <string name="drawer_shops">My shops</string>
+    <string name="drawer_feedback">Give feedback</string>
+    <string name="drawer_help" translatable="false">Help</string>
+    <string name="drawer_list">My shopping list</string>
+    <string name="drawer_recipe">My recipes</string>
+    <string name="drawer_settings">Settings</string>
+    <string name="drawer_shops">Shops</string>
+    <string name="mailto" translatable="false">mailto:</string>
+    <string name="email" translatable="false">veronique.wuyts@student.thomasmore.be</string>
+    <string name="email_subject">Feedback Shopping List</string>
+    <!-- preferences -->
+    <string name="pref_group_notification">Notifications</string>
+    <string name="pref_group_notification_key" translatable="false">notifications</string>
+    <string name="pref_key_notification_on" translatable="false">notification_on</string>
+    <string name="pref_title_notification_on">Receive notifications</string>
+    <string name="pref_sum_notification_on">Receive weekly new tips and promotions</string>
+    <string name="pref_sum_notification_off">Do not receive weekly new tips and promotions</string>
+    <string name="pref_toast_notification_on">You will now receive weekly new tips and promotions</string>
+    <string name="pref_toast_notification_off">You will not receive new tips and promotions</string>
+    <string name="pref_key_notifications_how" translatable="false">notification_how</string>
+    <string name="pref_title_notifications_how">Receive notifications by</string>
+    <string name="pref_toast_notifications_how">You will receive tips and promotions via </string>
+    <string name="pref_entry_email" translatable="false">E-mail</string>
+    <string name="pref_entry_twitter" translatable="false">Twitter</string>
+    <string name="pref_entry_whats_app" translatable="false">WhatsApp</string>
+    <string name="pref_entry_messenger" translatable="false">Messenger</string>
+    <string name="pref_entry_sms">Text message</string>
+    <string name="pref_email" translatable="false">email</string>
+    <string name="pref_twitter" translatable="false">twitter</string>
+    <string name="pref_whats_app" translatable="false">whatsApp</string>
+    <string name="pref_messenger" translatable="false">messenger</string>
+    <string name="pref_sms" translatable="false">sms</string>
+    <string name="pref_group_option">Options</string>
+    <string name="pref_group_option_key" translatable="false">options</string>
+    <string name="pref_key_lock" translatable="false">screen_lock</string>
+    <string name="pref_title_lock">Keep screen active</string>
+    <string name="pref_sum_lock_on">Keep the screen active during shopping</string>
+    <string name="pref_sum_lock_off">Do not keep the screen active during shopping</string>
+
     <!-- list items ViewHolder -->
     <string name="item_image">Product picture</string>
     <string name="promotion_image">Promotion flag</string>
@@ -23,7 +63,8 @@
     <string name="search">Search product</string>
     <string name="empty_favorites">You don\'t have any products marked as favorite</string>
     <string name="plus" translatable="false">Plus</string>
-
+    <!-- other -->
+    <string name="not_implemented">This feature is not yet implemented</string>
 
     <!-- shop data -->
     <string name="shop_ah" translatable="false">Albert Heijn</string>

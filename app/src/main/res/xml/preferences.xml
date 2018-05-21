@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_group_notification"
+        android:key="@string/pref_group_notification_key">
+        <CheckBoxPreference
+            android:key="@string/pref_key_notification_on"
+            android:title="@string/pref_title_notification_on"
+            android:summaryOn="@string/pref_sum_notification_on"
+            android:summaryOff="@string/pref_sum_notification_off"
+            android:defaultValue="false" />
+        <ListPreference
+            android:dependency="@string/pref_key_notification_on"
+            android:key="@string/pref_key_notifications_how"
+            android:title="@string/pref_title_notifications_how"
+            android:dialogTitle="@string/pref_title_notifications_how"
+            android:summary="%s"
+            android:entries="@array/notification_entries"
+            android:entryValues="@array/notification_values"
+            android:defaultValue="@string/pref_email" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_group_option"
+        android:key="@string/pref_group_option_key">
+        <CheckBoxPreference
+            android:key="@string/pref_key_lock"
+            android:title="@string/pref_title_lock"
+            android:summaryOn="@string/pref_sum_lock_on"
+            android:summaryOff="@string/pref_sum_lock_off"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

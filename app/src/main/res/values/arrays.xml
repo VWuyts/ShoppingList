@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- preferences arrays -->
+    <string-array name="notification_entries">
+        <item>@string/pref_entry_email</item>
+        <item>@string/pref_entry_twitter</item>
+        <item>@string/pref_entry_whats_app</item>
+        <item>@string/pref_entry_messenger</item>
+        <item>@string/pref_entry_sms</item>
+    </string-array>
+    <string-array name="notification_values">
+        <item>@string/pref_email</item>
+        <item>@string/pref_twitter</item>
+        <item>@string/pref_whats_app</item>
+        <item>@string/pref_messenger</item>
+        <item>@string/pref_sms</item>
+    </string-array>
 
     <!-- data arrays -->
     <string-array name="shop_data">
