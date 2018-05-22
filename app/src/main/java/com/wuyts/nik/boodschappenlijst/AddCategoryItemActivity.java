@@ -76,6 +76,8 @@ public class AddCategoryItemActivity extends AppCompatActivity
         Favorite itemToAdd = mArrayList.get(clickedIndexItem);
         long itemId = itemToAdd.getId();
         mDbHelper.addListItem(mDb, itemId, mListId);
+        // TODO: do not add 2x same item to list
+        // TODO: add view to show which items are already on shopping list
 
         // Go back to main activity
         Intent intent = new Intent(AddCategoryItemActivity.this, MainActivity.class);
