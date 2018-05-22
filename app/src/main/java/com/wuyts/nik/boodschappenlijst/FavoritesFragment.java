@@ -56,6 +56,8 @@ public class FavoritesFragment extends Fragment
         ShoppingListDbHelper dbHelper = ((AddItemActivity)getActivity()).getDbHelper();
         SQLiteDatabase db = ((AddItemActivity)getActivity()).getDb();
         dbHelper.addListItem(db, itemId, mListId);
+        // TODO: do not add 2x same item to list
+        // TODO: add view to show which items are already on shopping list
 
         // Go back to main activity
         Intent intent = new Intent(getActivity(), MainActivity.class);
